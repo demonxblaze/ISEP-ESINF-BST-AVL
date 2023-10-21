@@ -1,4 +1,4 @@
-package org.example.Scanners;
+package Scanners;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,6 +21,34 @@ public interface FileScanner {
                 if (!line.trim().isEmpty()) {
                     String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
                     lines.add(data);
+                }
+            }
+        } catch (IOException e) { // Caso não consiga ler o ficheiro
+            System.err.println("Ficherio em formato inválido, tente o formato CSV " + e.getMessage());
+        }
+
+        return lines;
+
+
+    }
+    static List<String[]> lerTrips (String fileName) {
+
+        // Lista de arrays de Strings
+        List<String[]> lines = new ArrayList<>();
+
+
+        // Tenta ler o ficheiro CSV
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line = br.readLine();
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+                    String[] refinedData = new String[4];
+                    refinedData[0] = data[1]; //VehID
+                    refinedData[1] = data[2]; //TripID
+                    refinedData[2] = data[4]; //Latitude
+                    refinedData[3] = data[5]; //Longitude
+                    lines.add(refinedData);
                 }
             }
         } catch (IOException e) { // Caso não consiga ler o ficheiro
