@@ -75,6 +75,7 @@ public class Trip implements Comparable<Trip>{
         return this.tripID == trip.tripID;
     }
 
+
     @Override
     public int compareTo(Trip o) {
         if (this.tripID > o.tripID)
@@ -82,5 +83,9 @@ public class Trip implements Comparable<Trip>{
         if (this.tripID < o.tripID)
             return -1;
         return 0;
+    }
+    @Override
+    public String toString() {
+        return "Trip: " + tripID + " Start: " + latitudeStart + " " + longitudeStart + " End: " + latitudeEnd + " " + longitudeEnd;
     }
 }

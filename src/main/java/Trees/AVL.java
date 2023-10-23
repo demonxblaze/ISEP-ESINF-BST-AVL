@@ -1,5 +1,4 @@
-package Trees;
-/*
+package Trees;/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,24 +12,23 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
 
 
     private int balanceFactor(Node<E> node) {
-        return height(node.getLeft()) - height(node.getRight());
+        if (node == null) return 0;
+        return height(node.getRight()) - height(node.getLeft());
     }
 
     private Node<E> rightRotation(Node<E> node) {
-        Node<E> leftson = node.getLeft();
-        if (leftson == null) return node;
-        node.setLeft(leftson.getRight());
-        leftson.setRight(node);
-        node = leftson;
+        Node<E> left = node.getLeft();
+        node.setLeft(left.getRight());
+        left.setRight(node);
+        node = left;
         return node;
     }
 
     private Node<E> leftRotation(Node<E> node) {
-        Node<E> rightson = node.getRight();
-        if (rightson == null) return node;
-        node.setRight(rightson.getLeft());
-        rightson.setLeft(node);
-        node = rightson;
+        Node<E> right = node.getRight();
+        node.setRight(right.getLeft());
+        right.setLeft(node);
+        node = right;
         return node;
     }
 
@@ -46,16 +44,15 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
     }
 
     private Node<E> balanceNode(Node<E> node) {
-
         if (balanceFactor(node) > 1) {
-            if (balanceFactor(node.getLeft()) > 0) {
-                node = rightRotation(node);
-            } else {
+            if (balanceFactor(node.getRight()) > 0){
+                node = leftRotation(node);
+            } else{
                 node = twoRotations(node);
             }
         } else if (balanceFactor(node) < -1) {
-            if (balanceFactor(node.getRight()) < 0) {
-                node = leftRotation(node);
+            if (balanceFactor(node.getLeft()) < 0){
+                node = rightRotation(node);
             } else {
                 node = twoRotations(node);
             }
@@ -70,49 +67,53 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
 
     private Node<E> insert(E element, Node<E> node) {
         if (node == null)
-            return new Node(element, null, null);
-        if (node.getElement() == element)
+            return new Node<>(element, null, null);
+
+        if (node.getElement().compareTo(element) == 0)
             node.setElement(element);
-        else if (node.getElement().compareTo(element) > 0) {
-            node.setLeft(insert(element, node.getLeft()));
-            node = balanceNode(node);
-        } else {
-            node.setRight(insert(element, node.getRight()));
-            node = balanceNode(node);
+        else {
+            if (node.getElement().compareTo(element) > 0) {
+                node.setLeft(insert(element, node.getLeft()));
+                node = balanceNode(node);
+            } else {
+                node.setRight(insert(element, node.getRight()));
+                node = balanceNode(node);
+            }
         }
         return node;
+
     }
 
-
+    @Override
     public void remove(E element) {
         root = remove(element, root());
-        root = balanceNode(root);
     }
 
-    private Node<E> remove(E element, Node<E> node) {
+    private Node<E> remove(E element, BST.Node<E> node) {
         if (node == null)
             return null;
-        if (node.getElement().equals(element)) {
+
+        if (node.getElement().compareTo(element)==0) {
             if (node.getLeft() == null && node.getRight() == null) {
                 return null;
             }
-            if (node.getLeft() == null) {
+            if (node.getLeft() == null)
                 return node.getRight();
-            }
-            if (node.getRight() == null) {
+            if (node.getRight() == null)
                 return node.getLeft();
-            }
+
             E smallElem = smallestElement(node.getRight());
             node.setElement(smallElem);
             node.setRight(remove(smallElem, node.getRight()));
             node = balanceNode(node);
-        } else if (node.getElement().compareTo(element)>0) {
+        } else if (node.getElement().compareTo(element) > 0) {
             node.setLeft(remove(element, node.getLeft()));
             node = balanceNode(node);
-        } else {
+        }else {
             node.setRight(remove(element, node.getRight()));
             node = balanceNode(node);
         }
+
         return node;
     }
 
