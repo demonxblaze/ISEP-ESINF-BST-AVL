@@ -79,25 +79,5 @@ public class EX3 {
     }
 
 
-/*
-    public static void main(String[] args) {
-       EX3 ex3 = new EX3();
-      List<String[]> lines = FileScanner.lerTrips("project-data/VEData/VED_180404_week.csv");
-        // List<String[]> lines = FileScanner.lerTrips("project-data/ex3-data/ex3-example1.csv");
 
-       Set<Trip> tripsToFind = new HashSet<>();
-       tripsToFind.add(new Trip(2213, 0, 0, 0, 0));
-       //tripsToFind.add(new Trip(583, 0, 0, 0, 0));
-       tripsToFind.add(new Trip(2294, 0, 0, 0, 0));
-
-
-      // AVL<Trip> trips = ex3.getTrips(tripsToFind, lines);
-       AVL<Trip> trips = ex3.insertTripsInTheTree( lines);
-       System.out.println(trips.toString());
-        System.out.println("--------------------------------------------------");
-
-        AVL<Trip> trips2 = ex3.getTrips(1300, 1400, lines);
-        System.out.println(trips2);
-
-    }*/
 }

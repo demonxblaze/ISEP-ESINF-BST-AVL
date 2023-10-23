@@ -72,7 +72,7 @@ public class Trip implements Comparable<Trip>{
         if (this == obj)
             return true;
         Trip trip = (Trip) obj;
-        return this.tripID == trip.tripID;
+        return this.tripID == trip.tripID && this.latitudeStart == trip.latitudeStart && this.longitudeStart == trip.longitudeStart && this.latitudeEnd == trip.latitudeEnd && this.longitudeEnd == trip.longitudeEnd;
     }
 
 

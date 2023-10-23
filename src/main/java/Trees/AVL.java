@@ -62,6 +62,7 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
 
     @Override
     public void insert(E element) {
+        if (element == null) return;
         root = insert(element, root);
     }
 
