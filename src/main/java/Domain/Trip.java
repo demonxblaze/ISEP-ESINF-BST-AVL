@@ -1,8 +1,12 @@
 package Domain;
 
 public class Trip implements Comparable<Trip>{
+    
+    //double dayNum;
+    //int vehID;
 
     int tripID;
+    //double timestamp;
     double latitudeStart;
     double longitudeStart;
     double latitudeEnd;
