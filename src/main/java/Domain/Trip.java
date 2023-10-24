@@ -1,16 +1,31 @@
 package Domain;
 
 public class Trip implements Comparable<Trip>{
-    
-    //double dayNum;
-    //int vehID;
 
+    double dayNum;
+    int vehID;
     int tripID;
-    //double timestamp;
+    double timestamp;
     double latitudeStart;
     double longitudeStart;
     double latitudeEnd;
     double longitudeEnd;
+    double speed;
+    String maf;
+    String rpm;
+    String load;
+    String outsideAirTemp;
+    String fuelRate;
+    String aCPowerKW;
+    String aCpowerW;
+    String heaterPower;
+    String hvCurrentBattery;
+    String hvBatterySOC;
+    String hvBatteryVoltage;
+    String shortFuelOnePc;
+    String shortFuelTwoPc;
+    String longFuelOnePc;
+    String longFuelTwoPc;
 
     public Trip(int tripID,  double latitudeStart, double longitudeStart, double latitudeEnd, double longitudeEnd){
         setTripID(tripID);
