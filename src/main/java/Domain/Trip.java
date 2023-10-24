@@ -33,9 +33,39 @@ public class Trip implements Comparable<Trip>{
         setLongitudeStart(longitudeStart);
         setLatitudeEnd(latitudeEnd);
         setLongitudeEnd(longitudeEnd);
-
     }
 
+
+    public Trip(double dayNum, int vehID, int tripID, double timestamp, double latitudeStart, double longitudeStart,
+                double latitudeEnd, double longitudeEnd, double speed, String maf, String rpm, String load,
+                String outsideAirTemp, String fuelRate, String aCPowerKW, String aCpowerW, String heaterPower,
+                String hvCurrentBattery, String hvBatterySOC, String hvBatteryVoltage, String shortFuelOnePc,
+                String shortFuelTwoPc, String longFuelOnePc, String longFuelTwoPc) {
+        setDayNum(dayNum);
+        setVehID(vehID);
+        setTripID(tripID);
+        setTimestamp(timestamp);
+        setLatitudeStart(latitudeStart);
+        setLongitudeStart(longitudeStart);
+        setLatitudeEnd(latitudeEnd);
+        setLongitudeEnd(longitudeEnd);
+        setSpeed(speed);
+        setMaf(maf);
+        setRpm(rpm);
+        setLoad(load);
+        setOutsideAirTemp(outsideAirTemp);
+        setFuelRate(fuelRate);
+        setaCPowerKW(aCPowerKW);
+        setaCpowerW(aCpowerW);
+        setHeaterPower(heaterPower);
+        setHvCurrentBattery(hvCurrentBattery);
+        setHvBatterySOC(hvBatterySOC);
+        setHvBatteryVoltage(hvBatteryVoltage);
+        setShortFuelOnePc(shortFuelOnePc);
+        setShortFuelTwoPc(shortFuelTwoPc);
+        setLongFuelOnePc(longFuelOnePc);
+        setLongFuelTwoPc(longFuelTwoPc);
+    }
 
     public int getTripID() {
         return tripID;
@@ -46,6 +76,157 @@ public class Trip implements Comparable<Trip>{
     }
 
 
+    public double getDayNum() {
+        return dayNum;
+    }
+
+    public void setDayNum(double dayNum) {
+        this.dayNum = dayNum;
+    }
+
+    public int getVehID() {
+        return vehID;
+    }
+
+    public void setVehID(int vehID) {
+        this.vehID = vehID;
+    }
+
+    public double getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(double timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public String getMaf() {
+        return maf;
+    }
+
+    public void setMaf(String maf) {
+        this.maf = maf;
+    }
+
+    public String getRpm() {
+        return rpm;
+    }
+
+    public void setRpm(String rpm) {
+        this.rpm = rpm;
+    }
+
+    public String getLoad() {
+        return load;
+    }
+
+    public void setLoad(String load) {
+        this.load = load;
+    }
+
+    public String getOutsideAirTemp() {
+        return outsideAirTemp;
+    }
+
+    public void setOutsideAirTemp(String outsideAirTemp) {
+        this.outsideAirTemp = outsideAirTemp;
+    }
+
+    public String getFuelRate() {
+        return fuelRate;
+    }
+
+    public void setFuelRate(String fuelRate) {
+        this.fuelRate = fuelRate;
+    }
+
+    public String getaCPowerKW() {
+        return aCPowerKW;
+    }
+
+    public void setaCPowerKW(String aCPowerKW) {
+        this.aCPowerKW = aCPowerKW;
+    }
+
+    public String getaCpowerW() {
+        return aCpowerW;
+    }
+
+    public void setaCpowerW(String aCpowerW) {
+        this.aCpowerW = aCpowerW;
+    }
+
+    public String getHeaterPower() {
+        return heaterPower;
+    }
+
+    public void setHeaterPower(String heaterPower) {
+        this.heaterPower = heaterPower;
+    }
+
+    public String getHvCurrentBattery() {
+        return hvCurrentBattery;
+    }
+
+    public void setHvCurrentBattery(String hvCurrentBattery) {
+        this.hvCurrentBattery = hvCurrentBattery;
+    }
+
+    public String getHvBatterySOC() {
+        return hvBatterySOC;
+    }
+
+    public void setHvBatterySOC(String hvBatterySOC) {
+        this.hvBatterySOC = hvBatterySOC;
+    }
+
+    public String getHvBatteryVoltage() {
+        return hvBatteryVoltage;
+    }
+
+    public void setHvBatteryVoltage(String hvBatteryVoltage) {
+        this.hvBatteryVoltage = hvBatteryVoltage;
+    }
+
+    public String getShortFuelOnePc() {
+        return shortFuelOnePc;
+    }
+
+    public void setShortFuelOnePc(String shortFuelOnePc) {
+        this.shortFuelOnePc = shortFuelOnePc;
+    }
+
+    public String getShortFuelTwoPc() {
+        return shortFuelTwoPc;
+    }
+
+    public void setShortFuelTwoPc(String shortFuelTwoPc) {
+        this.shortFuelTwoPc = shortFuelTwoPc;
+    }
+
+    public String getLongFuelOnePc() {
+        return longFuelOnePc;
+    }
+
+    public void setLongFuelOnePc(String longFuelOnePc) {
+        this.longFuelOnePc = longFuelOnePc;
+    }
+
+    public String getLongFuelTwoPc() {
+        return longFuelTwoPc;
+    }
+
+    public void setLongFuelTwoPc(String longFuelTwoPc) {
+        this.longFuelTwoPc = longFuelTwoPc;
+    }
 
     public double getLatitudeStart() {
         return latitudeStart;
