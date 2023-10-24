@@ -62,8 +62,8 @@ class EX3Test {
         AVL<Trip> result = ex3.getTrips(300,600, lines);
 
         AVL<Trip> expected = new AVL<>();
-        expected.insert(new Trip(300, 42.27257083, -83.79917139, 43.27259583, -84.79918222));
         expected.insert(new Trip(527, 42.27173778, -83.79912111, 42.27244472, -83.79918278));
+        expected.insert(new Trip(300, 42.27257083, -83.79917139, 43.27259583, -84.79918222));
 
 
         assertEquals(expected, result);

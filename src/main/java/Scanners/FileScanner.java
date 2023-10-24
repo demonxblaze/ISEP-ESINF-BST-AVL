@@ -36,10 +36,6 @@ public interface FileScanner {
         // Lista de arrays de Strings
         List<String[]> lines = new ArrayList<>();
 
-//Q: why for an input of 9000 lines it add like 400000 lines to the list?
-//A: because the file has 9000 lines but each line has 4 lines, so it adds 36000 lines to the list
-//Q: why does it add 4 lines to the list?
-
         // Tenta ler o ficheiro CSV
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line = br.readLine();
