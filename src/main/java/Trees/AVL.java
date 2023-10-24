@@ -4,6 +4,8 @@ package Trees;/*
  * and open the template in the editor.
  */
 
+import java.util.List;
+
 /**
  * @param <E>
  * @author DEI-ESINF
@@ -59,6 +61,31 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
         }
         return node;
     }
+
+    public AVL<E> findBetween(E min, E max){
+        AVL<E> avl = new AVL<>();
+        findBetween(root,min, max, avl);
+        return avl;
+    }
+
+        private void findBetween(Node<E> node, E min, E max, AVL<E> result) {
+            if (node == null) {
+                return;
+            }
+
+            if (min.compareTo(node.getElement()) <= 0 && node.getElement().compareTo(max) <= 0) {
+                result.insert(node.getElement());
+            }
+
+            if (min.compareTo(node.getElement()) < 0) {
+                findBetween(node.getLeft(), min, max, result);
+            }
+
+            if (max.compareTo(node.getElement()) > 0) {
+                findBetween(node.getRight(), min, max, result);
+            }
+        }
+
 
     @Override
     public void insert(E element) {

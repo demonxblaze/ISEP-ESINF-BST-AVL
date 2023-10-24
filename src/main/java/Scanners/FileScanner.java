@@ -36,6 +36,9 @@ public interface FileScanner {
         // Lista de arrays de Strings
         List<String[]> lines = new ArrayList<>();
 
+//Q: why for an input of 9000 lines it add like 400000 lines to the list?
+//A: because the file has 9000 lines but each line has 4 lines, so it adds 36000 lines to the list
+//Q: why does it add 4 lines to the list?
 
         // Tenta ler o ficheiro CSV
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
@@ -57,33 +60,5 @@ public interface FileScanner {
         return lines;
 
 
-    }
-
-    static List<String[]> lerVeichleID_Trips(String fileName){
-
-        List<String[]> output = new ArrayList<>(); // Lista de arrays de Strings
-
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) { // Tenta ler o ficheiro CSV
-
-            String line = br.readLine();
-
-            while ((line = br.readLine()) != null) { // Enquanto houver linhas para ler
-                if (!line.trim().isEmpty()) {
-                    String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
-                    String[] trimmedData = new String[4];
-
-                    trimmedData[0] = data[1]; //VehicleID
-                    trimmedData[1] = data[2]; //TripID
-                    trimmedData[2] = data[4]; //Latitude
-                    trimmedData[3] = data[5]; //Longitude
-
-                    output.add(trimmedData);
-                }
-            }
-        } catch (IOException e) { // Caso não consiga ler o ficheiro
-            System.err.println("Ficherio em formato inválido, tente o formato CSV " + e.getMessage());
-        }
-
-        return output;
     }
 }

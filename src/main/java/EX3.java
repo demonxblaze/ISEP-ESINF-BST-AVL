@@ -60,21 +60,16 @@ public class EX3 {
         return tripsFounded;
 
     }
+
     public AVL<Trip> getTrips(int min, int max, List<String[]> list){
 
         AVL<Trip> avl = insertTripsInTheTree(list);
 
-        AVL<Trip> tripsFounded = new AVL<>();
 
-        while (min <= max){
-            Trip temp = avl.findElement(new Trip(min, 0, 0, 0, 0));
-            if(temp!=null){
-                tripsFounded.insert(temp);
-            }
-            min++;
-        }
+        Trip minTrip= new Trip(min,0,0,0,0);
+        Trip maxTrip= new Trip(max,0,0,0,0);
 
-        return tripsFounded;
+        return avl.findBetween(minTrip,maxTrip);
 
     }
 
