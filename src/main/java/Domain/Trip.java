@@ -36,12 +36,12 @@ public class Trip implements Comparable<Trip>{
     }
 
     public Trip(int vehID, int tripID, double latitudeStart, double longitudeStart, double latitudeEnd, double longitudeEnd) {
-        this.vehID = vehID;
-        this.tripID = tripID;
-        this.latitudeStart = latitudeStart;
-        this.longitudeStart = longitudeStart;
-        this.latitudeEnd = latitudeEnd;
-        this.longitudeEnd = longitudeEnd;
+        setVehID(vehID);
+        setTripID(tripID);
+        setLatitudeStart(latitudeStart);
+        setLongitudeStart(longitudeStart);
+        setLatitudeEnd(latitudeEnd);
+        setLongitudeEnd(longitudeEnd);
     }
 
     public Trip(double dayNum, int vehID, int tripID, double timestamp, double latitudeStart, double longitudeStart,
