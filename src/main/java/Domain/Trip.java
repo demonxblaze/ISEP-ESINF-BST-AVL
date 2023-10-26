@@ -33,6 +33,7 @@ public class Trip implements Comparable<Trip>{
         setLongitudeStart(longitudeStart);
         setLatitudeEnd(latitudeEnd);
         setLongitudeEnd(longitudeEnd);
+        setVehID(-1);
     }
 
     public Trip(int vehID, int tripID, double latitudeStart, double longitudeStart, double latitudeEnd, double longitudeEnd) {
@@ -305,6 +306,9 @@ public class Trip implements Comparable<Trip>{
         if (this == obj)
             return true;
         Trip trip = (Trip) obj;
+        if (vehID >= 0){
+            return this.vehID == trip.vehID;
+        }
         return this.tripID == trip.tripID && this.latitudeStart == trip.latitudeStart && this.longitudeStart == trip.longitudeStart && this.latitudeEnd == trip.latitudeEnd && this.longitudeEnd == trip.longitudeEnd;
     }
 
