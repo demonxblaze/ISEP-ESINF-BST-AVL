@@ -1,6 +1,6 @@
 package Domain;
 
-public class Trip implements Comparable<Trip>{
+public class TripApagar implements Comparable<TripApagar>{
 
     double dayNum;
     int vehID;
@@ -27,7 +27,7 @@ public class Trip implements Comparable<Trip>{
     String longFuelOnePc;
     String longFuelTwoPc;
 
-    public Trip(int tripID,  double latitudeStart, double longitudeStart, double latitudeEnd, double longitudeEnd){
+    public TripApagar(int tripID, double latitudeStart, double longitudeStart, double latitudeEnd, double longitudeEnd){
         setTripID(tripID);
         setLatitudeStart(latitudeStart);
         setLongitudeStart(longitudeStart);
@@ -36,7 +36,7 @@ public class Trip implements Comparable<Trip>{
         setVehID(-1);
     }
 
-    public Trip(int vehID, int tripID, double latitudeStart, double longitudeStart, double latitudeEnd, double longitudeEnd) {
+    public TripApagar(int vehID, int tripID, double latitudeStart, double longitudeStart, double latitudeEnd, double longitudeEnd) {
         setVehID(vehID);
         setTripID(tripID);
         setLatitudeStart(latitudeStart);
@@ -45,11 +45,11 @@ public class Trip implements Comparable<Trip>{
         setLongitudeEnd(longitudeEnd);
     }
 
-    public Trip(double dayNum, int vehID, int tripID, double timestamp, double latitudeStart, double longitudeStart,
-                double latitudeEnd, double longitudeEnd, double speed, String maf, String rpm, String load,
-                String outsideAirTemp, String fuelRate, String aCPowerKW, String aCpowerW, String heaterPower,
-                String hvCurrentBattery, String hvBatterySOC, String hvBatteryVoltage, String shortFuelOnePc,
-                String shortFuelTwoPc, String longFuelOnePc, String longFuelTwoPc) {
+    public TripApagar(double dayNum, int vehID, int tripID, double timestamp, double latitudeStart, double longitudeStart,
+                      double latitudeEnd, double longitudeEnd, double speed, String maf, String rpm, String load,
+                      String outsideAirTemp, String fuelRate, String aCPowerKW, String aCpowerW, String heaterPower,
+                      String hvCurrentBattery, String hvBatterySOC, String hvBatteryVoltage, String shortFuelOnePc,
+                      String shortFuelTwoPc, String longFuelOnePc, String longFuelTwoPc) {
         setDayNum(dayNum);
         setVehID(vehID);
         setTripID(tripID);
@@ -305,7 +305,7 @@ public class Trip implements Comparable<Trip>{
             return false;
         if (this == obj)
             return true;
-        Trip trip = (Trip) obj;
+        TripApagar trip = (TripApagar) obj;
         if (vehID >= 0){
             return this.vehID == trip.vehID;
         }
@@ -314,7 +314,7 @@ public class Trip implements Comparable<Trip>{
 
 
     @Override
-    public int compareTo(Trip o) {
+    public int compareTo(TripApagar o) {
         if (this.tripID > o.tripID)
             return 1;
         if (this.tripID < o.tripID)

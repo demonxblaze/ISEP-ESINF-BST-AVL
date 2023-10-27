@@ -1,6 +1,6 @@
 package Domain;
 
-public class Vehicle {
+public class VehicleApagar {
 
     private int vehID;
     private String type;
@@ -11,7 +11,7 @@ public class Vehicle {
     private int weight;
 
 
-    public Vehicle(int vehID, String type, String vehClass, String engConfig, String transmission, String driveWheels, int weight) {
+    public VehicleApagar(int vehID, String type, String vehClass, String engConfig, String transmission, String driveWheels, int weight) {
         setVehID(vehID);
         setType(type);
         setVehClass(vehClass);

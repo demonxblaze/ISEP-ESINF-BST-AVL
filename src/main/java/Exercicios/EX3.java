@@ -1,13 +1,14 @@
+package Exercicios;
+
 import java.util.*;
 
-import Domain.Trip;
-import Scanners.FileScanner;
+import Domain.TripApagar;
 import Trees.AVL;
 
 public class EX3 {
 
-    private AVL<Trip> insertTripsInTheTree(List<String[]> lines) {
-        AVL<Trip> trips = new AVL<>();
+    private AVL<TripApagar> insertTripsInTheTree(List<String[]> lines) {
+        AVL<TripApagar> trips = new AVL<>();
 
 
         double latitudeStart = 0;
@@ -29,7 +30,7 @@ public class EX3 {
                 longitudeStart = Double.parseDouble(s[2]);
 
             } else if ( tripID != Integer.parseInt(s[0])) {
-                trips.insert(new Trip(tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
+                trips.insert(new TripApagar(tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
                 tripID = Integer.parseInt(s[0]);
                 latitudeStart = Double.parseDouble(s[1]);
                 longitudeStart = Double.parseDouble(s[2]);
@@ -42,18 +43,18 @@ public class EX3 {
 
         }
 
-        trips.insert(new Trip(tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
+        trips.insert(new TripApagar(tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
 
         return trips;
     }
 
-    public AVL<Trip> getTrips(Set<Trip> trips, List<String[]> list){
+    public AVL<TripApagar> getTrips(Set<TripApagar> trips, List<String[]> list){
 
-        AVL<Trip> avl = insertTripsInTheTree(list);
+        AVL<TripApagar> avl = insertTripsInTheTree(list);
 
-        AVL<Trip> tripsFounded = new AVL<>();
+        AVL<TripApagar> tripsFounded = new AVL<>();
 
-        for(Trip t : trips){
+        for(TripApagar t : trips){
             tripsFounded.insert(avl.findElement(t));
         }
 
@@ -61,13 +62,13 @@ public class EX3 {
 
     }
 
-    public AVL<Trip> getTrips(int min, int max, List<String[]> list){
+    public AVL<TripApagar> getTrips(int min, int max, List<String[]> list){
 
-        AVL<Trip> avl = insertTripsInTheTree(list);
+        AVL<TripApagar> avl = insertTripsInTheTree(list);
 
 
-        Trip minTrip= new Trip(min,0,0,0,0);
-        Trip maxTrip= new Trip(max,0,0,0,0);
+        TripApagar minTrip= new TripApagar(min,0,0,0,0);
+        TripApagar maxTrip= new TripApagar(max,0,0,0,0);
 
         return avl.findBetween(minTrip,maxTrip);
 

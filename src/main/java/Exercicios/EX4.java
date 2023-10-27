@@ -1,4 +1,6 @@
-import Domain.Trip;
+package Exercicios;
+
+import Domain.TripApagar;
 import Trees.AVL;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -6,8 +8,8 @@ import java.util.Set;
 
 public class EX4 {
 
-    private Set<Trip> insertDataInSet(List<String[]> lines) {
-        Set<Trip> trips = new LinkedHashSet<>();
+    private Set<TripApagar> insertDataInSet(List<String[]> lines) {
+        Set<TripApagar> trips = new LinkedHashSet<>();
         boolean firstRow = true;
 
         double latitudeStart = 0;
@@ -30,7 +32,7 @@ public class EX4 {
             }
 
             if (tripID != Integer.parseInt(line[1])) {
-                trips.add(new Trip(vehID, tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
+                trips.add(new TripApagar(vehID, tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
                 tripID = Integer.parseInt(line[1]);
                 latitudeStart = Double.parseDouble(line[2]);
                 longitudeStart = Double.parseDouble(line[3]);
@@ -41,17 +43,17 @@ public class EX4 {
 
         }
 
-        trips.add(new Trip(tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
+        trips.add(new TripApagar(tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
 
         return trips;
     }
 
-    public AVL<Trip> getTripBiggestDistance(List<String[]> lines){
-        Set<Trip> setOfTrips = insertDataInSet(lines);
+    public AVL<TripApagar> getTripBiggestDistance(List<String[]> lines){
+        Set<TripApagar> setOfTrips = insertDataInSet(lines);
         
-        AVL<Trip> trips = new AVL<>();
+        AVL<TripApagar> trips = new AVL<>();
         
-        for(Trip t : setOfTrips){
+        for(TripApagar t : setOfTrips){
             if(trips.findElement(t) == null){
                 trips.insert(t);
             } else if (trips.findElement(t).getTripDistance() < t.getTripDistance()){
