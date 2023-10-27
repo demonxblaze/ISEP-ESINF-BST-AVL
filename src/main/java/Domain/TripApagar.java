@@ -312,7 +312,6 @@ public class TripApagar implements Comparable<TripApagar>{
         return this.tripID == trip.tripID && this.latitudeStart == trip.latitudeStart && this.longitudeStart == trip.longitudeStart && this.latitudeEnd == trip.latitudeEnd && this.longitudeEnd == trip.longitudeEnd;
     }
 
-
     @Override
     public int compareTo(TripApagar o) {
         if (this.tripID > o.tripID)

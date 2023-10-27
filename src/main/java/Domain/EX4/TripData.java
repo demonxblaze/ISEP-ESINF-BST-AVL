@@ -10,8 +10,8 @@ public class TripData implements Comparable<TripData> {
     double timeStamp; // timestamp of the trip
     double latitude; // latitude of the vehicle during the trip
     double longitude; // longitude of the vehicle during the trip
-    int vehicleSpeed; // speed of the vehicle during the trip
-    int maf; // mass air flow of the vehicle during the trip
+    double vehicleSpeed; // speed of the vehicle during the trip
+    double maf; // mass air flow of the vehicle during the trip
     double engineRPM; // engine RPM of the vehicle during the trip
     double absoluteLoad; // absolute load of the vehicle during the trip
     double outsideTemp; // outside temperature during the trip
@@ -52,7 +52,7 @@ public class TripData implements Comparable<TripData> {
      * @param longTermFuelBank1 long term fuel bank 1 during the trip
      * @param longTermFuelBank2 long term fuel bank 2 during the trip
      */
-    public TripData(double dayNum, double timeStamp, double latitude, double longitude, int vehicleSpeed, int maf, double engineRPM, double absoluteLoad, double outsideTemp, double fuelRate, double airConPowerKw, double airConPowerWatt, double heaterPowerWatt, double hvBatteryCurrent, double hvBatterySoc, double hvBatteryVoltage, double shortTermFuelBank1, double shortTermFuelBank2, double longTermFuelBank1, double longTermFuelBank2) {
+    public TripData(double dayNum, double timeStamp, double latitude, double longitude, double vehicleSpeed, double maf, double engineRPM, double absoluteLoad, double outsideTemp, double fuelRate, double airConPowerKw, double airConPowerWatt, double heaterPowerWatt, double hvBatteryCurrent, double hvBatterySoc, double hvBatteryVoltage, double shortTermFuelBank1, double shortTermFuelBank2, double longTermFuelBank1, double longTermFuelBank2) {
         this.dayNum = dayNum;
         this.timeStamp = timeStamp;
         this.latitude = latitude;
@@ -143,7 +143,7 @@ public class TripData implements Comparable<TripData> {
      * Getter method for vehicleSpeed.
      * @return the vehicleSpeed
      */
-    public int getVehicleSpeed() {
+    public double getVehicleSpeed() {
         return vehicleSpeed;
     }
 
@@ -151,7 +151,7 @@ public class TripData implements Comparable<TripData> {
      * Setter method for vehicleSpeed.
      * @param vehicleSpeed the vehicleSpeed to set
      */
-    public void setVehicleSpeed(int vehicleSpeed) {
+    public void setVehicleSpeed(double vehicleSpeed) {
         this.vehicleSpeed = vehicleSpeed;
     }
 
@@ -159,7 +159,7 @@ public class TripData implements Comparable<TripData> {
      * Getter method for maf.
      * @return the maf
      */
-    public int getMaf() {
+    public double getMaf() {
         return maf;
     }
 
@@ -167,7 +167,7 @@ public class TripData implements Comparable<TripData> {
      * Setter method for maf.
      * @param maf the maf to set
      */
-    public void setMaf(int maf) {
+    public void setMaf(double maf) {
         this.maf = maf;
     }
 

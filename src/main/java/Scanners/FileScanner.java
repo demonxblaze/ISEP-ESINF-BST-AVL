@@ -1,5 +1,10 @@
 package Scanners;
 
+import Domain.EX4.Trip;
+import Domain.EX4.TripData;
+import Domain.EX4.Vehicle;
+import Trees.AVL;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,8 +33,6 @@ public interface FileScanner {
         }
 
         return lines;
-
-
     }
     static List<String[]> lerTrips (String fileName) {
 
@@ -84,7 +87,49 @@ public interface FileScanner {
         }
 
         return output;
-
-
     }
+
+    static List<Vehicle> getVehicleList(String filename) {
+        List<String[]> lines;
+        List<Vehicle> vehicles = new ArrayList<>();
+        lines = FileScanner.lerCSV(filename);
+
+        for (String[] line : lines) {
+            Vehicle vehicle = new Vehicle(Integer.parseInt(line[0]), line[1], line[2], line[3], line[4], line[5], Integer.parseInt(line[6]));
+            vehicles.add(vehicle);
+        }
+
+        return vehicles;
+    }
+
+    static List<Trip> getTripsList(String filename) {
+        List<String[]> lines;
+        List<Trip> trips = new ArrayList<>();
+        lines = FileScanner.lerTrips(filename);
+
+        AVL<TripData> tempTripAVL = new AVL<>();
+        for (String[] line : lines) {
+            for (String s : line) {
+                if (s.equals("NaN")) s = "0";
+            }
+            TripData temp = new TripData(Double.parseDouble(line[0]), Double.parseDouble(line [3]), Double.parseDouble(line[4]),
+                    Double.parseDouble(line[5]), Double.parseDouble(line[6]), Double.parseDouble(line[7]),
+                    Double.parseDouble(line[8]), Double.parseDouble(line[9]), Double.parseDouble(line[10]),
+                    Double.parseDouble(line[11]), Double.parseDouble(line[12]), Double.parseDouble(line[13]),
+                    Double.parseDouble(line[14]), Double.parseDouble(line[15]), Double.parseDouble(line[16]),
+                    Double.parseDouble(line[17]), Double.parseDouble(line[18]), Double.parseDouble(line[19]),
+                    Double.parseDouble(line[20]), Double.parseDouble(line[21]));
+
+            tempTripAVL.insert(temp);
+
+            if(lines.indexOf(line) > 0 && !lines.get(lines.indexOf(line) - 1)[2].equals(line[2])) {
+                Trip trip = new Trip(Integer.parseInt(line[1]),Integer.parseInt(line[2]), tempTripAVL);
+                trips.add(trip);
+                tempTripAVL = new AVL<>();
+            }
+        }
+
+        return trips;
+    }
+
 }

@@ -71,12 +71,13 @@ public class VehicleTrips implements Comparable<VehicleTrips> {
     }
 
     @Override
+    public int compareTo(VehicleTrips o) {
+        return this.vehicle.compareTo(o.getVehicle());
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(vehicle, trips);
     }
 
-    @Override
-    public int compareTo(VehicleTrips o) {
-        return 0;
-    }
 }

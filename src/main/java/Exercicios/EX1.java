@@ -1,5 +1,14 @@
 package Exercicios;
 
+import Domain.EX4.PairData;
+import Domain.EX4.Trip;
+import Domain.EX4.Vehicle;
+import Domain.EX4.VehicleTrips;
+import Scanners.FileScanner;
+import Trees.*;
+
+import java.util.List;
+
 public class EX1 {
 
 
@@ -9,6 +18,26 @@ public class EX1 {
     //também deverá permitir obter para uma determinada viagem (Trip) todos detalhes e leituras da
     //viagem e os detalhes do veículo associado
 
+    public AVL<VehicleTrips> getAVL(){
 
+        AVL<VehicleTrips> vehicleTripsAVL = new AVL<>();
 
+        List<Trip> trips = FileScanner.getTripsList("");
+        List<Vehicle> vehicles = FileScanner.getVehicleList("");
+
+        for(Vehicle v : vehicles){
+            VehicleTrips temp = new VehicleTrips(v);
+            for(Trip t : trips){
+                if(t.getVehid() == v.getVehID()){
+                    temp.addTrip(t);
+                }
+            }
+
+            vehicleTripsAVL.insert(temp);
+        }
+
+        return vehicleTripsAVL;
+    }
+
+   
 }

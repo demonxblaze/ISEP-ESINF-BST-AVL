@@ -5,15 +5,21 @@ import java.util.Objects;
 
 
 public class Trip implements Comparable<Trip> {
+
+    int vehID;
     int tripID;
     AVL<TripData> tripData;
 
 
-    public Trip(int tripID, AVL<TripData> tripData) {
+    public Trip(int vehid, int tripID, AVL<TripData> tripData) {
+        this.vehID = vehid;
         this.tripID = tripID;
         this.tripData = tripData;
     }
 
+    public int getVehid() {
+        return vehID;
+    }
     public int getTripID() {
         return tripID;
     }

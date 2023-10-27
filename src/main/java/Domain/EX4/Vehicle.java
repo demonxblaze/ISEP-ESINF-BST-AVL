@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Represents a vehicle with its unique ID, type, class, engine configuration, transmission, drive wheels, and weight.
  */
-public class Vehicle {
+public class Vehicle implements Comparable<Vehicle> {
     int vehID;
     String vehicleType;
     String vehicleClass;
@@ -187,5 +187,9 @@ public class Vehicle {
     @Override
     public int hashCode() {
         return Objects.hash(vehID);
+    }
+
+    public int compareTo(Vehicle v) {
+        return this.vehID - v.vehID;
     }
 }
