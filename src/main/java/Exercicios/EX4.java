@@ -1,5 +1,8 @@
 package Exercicios;
 
+import Domain.EX4.PairData;
+import Domain.EX4.Trip;
+import Domain.EX4.VehicleTrips;
 import Domain.TripApagar;
 import Trees.AVL;
 import java.util.LinkedHashSet;
@@ -73,20 +76,26 @@ public class EX4 {
         return(c * r);
     }
 
-    public AVL<TripApagar> getTripBiggestDistance(List<String[]> lines){
-        Set<TripApagar> setOfTrips = insertDataInSet(lines);
-        
-        AVL<TripApagar> trips = new AVL<>();
-        
-        for(TripApagar t : setOfTrips){
-            if(trips.findElement(t) == null){
-                trips.insert(t);
-            } else if (trips.findElement(t).getTripDistance() < t.getTripDistance()){
-                trips.remove(trips.findElement(t));
-                trips.insert(t);
-            }
-        }
+//    public AVL<TripApagar> getTripBiggestDistance(List<String[]> lines){
+//        Set<TripApagar> setOfTrips = insertDataInSet(lines);
+//
+//        AVL<TripApagar> trips = new AVL<>();
+//
+//        for(TripApagar t : setOfTrips){
+//            if(trips.findElement(t) == null){
+//                trips.insert(t);
+//            } else if (trips.findElement(t).getTripDistance() < t.getTripDistance()){
+//                trips.remove(trips.findElement(t));
+//                trips.insert(t);
+//            }
+//        }
+//
+//        return trips;
+//    }
 
-        return trips;
+    public AVL<PairData<Integer, Trip>> getTripBiggestDistance(AVL<VehicleTrips> input) {
+        AVL<PairData<Integer, Trip>> result = new AVL<>();
+
+        return result;
     }
 }

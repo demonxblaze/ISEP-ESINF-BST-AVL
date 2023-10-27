@@ -5,7 +5,7 @@ import Trees.AVL;
 /**
  * Represents a vehicle with its unique ID, type, class, engine configuration, transmission, drive wheels, and weight.
  */
-public class VehicleTrips {
+public class VehicleTrips implements Comparable<VehicleTrips> {
 
      // Attributes
     Vehicle vehicle;
@@ -61,4 +61,8 @@ public class VehicleTrips {
     }
 
 
+    @Override
+    public int compareTo(VehicleTrips o) {
+        return 0;
+    }
 }
