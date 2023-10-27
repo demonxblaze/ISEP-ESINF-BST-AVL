@@ -47,13 +47,13 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
 
     private Node<E> balanceNode(Node<E> node) {
         if (balanceFactor(node) > 1) {
-            if (balanceFactor(node.getRight()) > 0){
+            if (balanceFactor(node.getRight()) > 0) {
                 node = leftRotation(node);
-            } else{
+            } else {
                 node = twoRotations(node);
             }
         } else if (balanceFactor(node) < -1) {
-            if (balanceFactor(node.getLeft()) < 0){
+            if (balanceFactor(node.getLeft()) < 0) {
                 node = rightRotation(node);
             } else {
                 node = twoRotations(node);
@@ -61,30 +61,6 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
         }
         return node;
     }
-
-    public AVL<E> findBetween(E min, E max){
-        AVL<E> avl = new AVL<>();
-        findBetween(root,min, max, avl);
-        return avl;
-    }
-
-        private void findBetween(Node<E> node, E min, E max, AVL<E> result) {
-            if (node == null) {
-                return;
-            }
-
-            if (min.compareTo(node.getElement()) <= 0 && node.getElement().compareTo(max) <= 0) {
-                result.insert(node.getElement());
-            }
-
-            if (min.compareTo(node.getElement()) < 0) {
-                findBetween(node.getLeft(), min, max, result);
-            }
-
-            if (max.compareTo(node.getElement()) > 0) {
-                findBetween(node.getRight(), min, max, result);
-            }
-        }
 
 
     @Override
@@ -121,7 +97,7 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
         if (node == null)
             return null;
 
-        if (node.getElement().compareTo(element)==0) {
+        if (node.getElement().compareTo(element) == 0) {
             if (node.getLeft() == null && node.getRight() == null) {
                 return null;
             }
@@ -137,7 +113,7 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
         } else if (node.getElement().compareTo(element) > 0) {
             node.setLeft(remove(element, node.getLeft()));
             node = balanceNode(node);
-        }else {
+        } else {
             node.setRight(remove(element, node.getRight()));
             node = balanceNode(node);
         }
@@ -170,4 +146,50 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
         } else return false;
     }
 
+    // Métodos Extra
+    public AVL<E> findBetween(E min, E max) {
+        AVL<E> avl = new AVL<>();
+        findBetween(root, min, max, avl);
+        return avl;
+    }
+
+    private void findBetween(Node<E> node, E min, E max, AVL<E> result) {
+        if (node == null) {
+            return;
+        }
+
+        if (min.compareTo(node.getElement()) <= 0 && node.getElement().compareTo(max) <= 0) {
+            result.insert(node.getElement());
+        }
+
+        if (min.compareTo(node.getElement()) < 0) {
+            findBetween(node.getLeft(), min, max, result);
+        }
+
+        if (max.compareTo(node.getElement()) > 0) {
+            findBetween(node.getRight(), min, max, result);
+        }
+    }
+
+    public E findMin() {
+        if (isEmpty()) return null;
+        return findMin(root).getElement();
+    }
+
+    private Node<E> findMin(Node<E> node) {
+        if (node.getLeft() == null)
+            return node;
+        return findMin(node.getLeft());
+    }
+
+    public E findMax() {
+        if (isEmpty()) return null;
+        return findMax(root).getElement();
+    }
+
+    private Node<E> findMax(Node<E> node) {
+        if (node.getRight() == null)
+            return node;
+        return findMax(node.getRight());
+    }
 }

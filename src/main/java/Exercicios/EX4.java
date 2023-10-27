@@ -2,6 +2,7 @@ package Exercicios;
 
 import Domain.EX4.PairData;
 import Domain.EX4.Trip;
+import Domain.EX4.Vehicle;
 import Domain.EX4.VehicleTrips;
 import Domain.TripApagar;
 import Trees.AVL;
@@ -93,8 +94,14 @@ public class EX4 {
 //        return trips;
 //    }
 
-    public AVL<PairData<Integer, Trip>> getTripBiggestDistance(AVL<VehicleTrips> input) {
+    public AVL<PairData<Integer, Trip>> getTripBiggestDistance(List<Integer> vehIDs) {
+        AVL<VehicleTrips> vehicleTrips = new AVL<>();
         AVL<PairData<Integer, Trip>> result = new AVL<>();
+
+        for (Integer vehID : vehIDs) {
+            Trip trip = vehicleTrips.findElement(new VehicleTrips(new Vehicle(vehID))).getTrips().findMax();
+            result.insert(new PairData<>(vehID, trip));
+        }
 
         return result;
     }

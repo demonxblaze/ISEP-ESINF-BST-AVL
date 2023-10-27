@@ -415,6 +415,12 @@ public class TripData implements Comparable<TripData> {
 
     @Override
     public int compareTo(TripData o) {
-        return 0;
+        if (this.timeStamp < o.timeStamp) {
+            return -1;
+        } else if (this.timeStamp > o.timeStamp) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 }

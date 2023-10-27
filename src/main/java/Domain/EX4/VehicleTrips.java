@@ -2,6 +2,8 @@ package Domain.EX4;
 
 import Trees.AVL;
 
+import java.util.Objects;
+
 /**
  * Represents a vehicle with its unique ID, type, class, engine configuration, transmission, drive wheels, and weight.
  */
@@ -60,6 +62,18 @@ public class VehicleTrips implements Comparable<VehicleTrips> {
         return trips.size();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VehicleTrips that = (VehicleTrips) o;
+        return Objects.equals(vehicle, that.vehicle);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vehicle, trips);
+    }
 
     @Override
     public int compareTo(VehicleTrips o) {

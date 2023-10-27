@@ -35,6 +35,10 @@ public class Vehicle {
         setWeight(weight);
     }
 
+    public Vehicle(int vehID) {
+        setVehID(vehID);
+    }
+
     /**
      * Returns the unique ID of the vehicle.
      *
