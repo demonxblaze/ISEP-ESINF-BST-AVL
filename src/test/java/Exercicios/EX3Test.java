@@ -8,8 +8,10 @@ import Domain.TripApagar;
 import Exercicios.EX3;
 import Scanners.FileScanner;
 import Trees.AVL;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,29 +19,28 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EX3Test {
+    EX1 ex1 = new EX1();
 
-    EX1 ex1;
+    List<String[]> vehicles1 = FileScanner.lerCSV("project-data/VEData/VED_Static_Data_PHEV&EV.csv");
+    List<String[]> vehicles2 = FileScanner.lerCSV("project-data/VEData/VED_Static_Data_ICE&HEV.csv");
+
+    List<String []>vehicles;
+
+    List<String[]> trips = FileScanner.lerCSV("project-data/VEData/VED_180404_week.csv");
     AVL<VehicleTrips> example1;
     AVL<VehicleTrips> example2;
     AVL<VehicleTrips> exampleProf;
-    EX3 ex3;
-
+    EX3 ex3 = new EX3();
     @BeforeEach
     void setUp() {
-        EX1 ex1 = new EX1();
 
-        List<Vehicle> vehicles1 = FileScanner.getVehicleList("project-data/VEData/VED_Static_Data_ICE&HEV.csv");
-        List<Vehicle> vehicles2 = FileScanner.getVehicleList("project-data/VEData/VED_Static_Data_PHEV&EV.csv");
-        List<Vehicle> vehicles = new java.util.ArrayList<>(vehicles1);
+        vehicles = new ArrayList<>(vehicles1);
         vehicles.addAll(vehicles2);
-
-        List<Trip> trips = FileScanner.getTripsList("project-data/VEData/VED_180404_week.csv");
-
-        AVL<VehicleTrips> example1 = ex1.getAVL(vehicles, trips);
-        AVL<VehicleTrips> example2 = ex1.getAVL(vehicles, trips);
-        AVL<VehicleTrips> exampleProf = ex1.getAVL(vehicles, trips);
-        EX3 ex3 = new EX3();
+        example1 = ex1.getAVL(vehicles, trips);
+        example2 = ex1.getAVL(vehicles, trips);
+        exampleProf = ex1.getAVL(vehicles, trips);
     }
+
 
     @org.junit.jupiter.api.Test
         //Encontrar a viagem com o tripID 2213

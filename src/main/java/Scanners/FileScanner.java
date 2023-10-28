@@ -22,6 +22,7 @@ public interface FileScanner {
         // Tenta ler o ficheiro CSV
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             String line;
+            line = br.readLine();
             while ((line = br.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
                     String[] data = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
@@ -89,18 +90,7 @@ public interface FileScanner {
         return output;
     }
 
-    static List<Vehicle> getVehicleList(String filename) {
-        List<String[]> lines;
-        List<Vehicle> vehicles = new ArrayList<>();
-        lines = FileScanner.lerCSV(filename);
 
-        for (String[] line : lines) {
-            Vehicle vehicle = new Vehicle(Integer.parseInt(line[0]), line[1], line[2], line[3], line[4], line[5], Integer.parseInt(line[6]));
-            vehicles.add(vehicle);
-        }
-
-        return vehicles;
-    }
 
     static List<Trip> getTripsList(String filename) {
         List<String[]> lines;

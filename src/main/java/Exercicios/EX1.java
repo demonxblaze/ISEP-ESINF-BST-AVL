@@ -1,12 +1,10 @@
 package Exercicios;
 
-import Domain.EX4.PairData;
-import Domain.EX4.Trip;
-import Domain.EX4.Vehicle;
-import Domain.EX4.VehicleTrips;
+import Domain.EX4.*;
 import Scanners.FileScanner;
 import Trees.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EX1 {
@@ -18,7 +16,11 @@ public class EX1 {
     //também deverá permitir obter para uma determinada viagem (Trip) todos detalhes e leituras da
     //viagem e os detalhes do veículo associado
 
-    public AVL<VehicleTrips> getAVL(List<Vehicle> vehicles, List<Trip> trips){
+    public AVL<VehicleTrips> getAVL(List<String[]> vehiclesData, List<String[]> tripsData){
+
+
+        List<Vehicle> vehicles = getVehicleList(vehiclesData);
+        List<Trip> trips = getTripsList(tripsData);
 
         AVL<VehicleTrips> vehicleTripsAVL = new AVL<>();
 
@@ -34,6 +36,50 @@ public class EX1 {
         }
 
         return vehicleTripsAVL;
+    }
+
+        static List<Vehicle> getVehicleList(List<String[]> vehiclesData) {
+
+        List<Vehicle> vehicles = new ArrayList<>();
+
+
+
+        for (String[] line : vehiclesData) {
+            if (line[0].equals("NO DATA")) line[0] = "0";
+            if (line[6].equals("NO DATA")) line[6] = "0";
+            Vehicle vehicle = new Vehicle(Integer.parseInt(line[0]), line[1], line[2], line[3], line[4], line[5], Integer.parseInt(line[6]));
+            vehicles.add(vehicle);
+        }
+
+        return vehicles;
+    }
+
+    static List<Trip> getTripsList(List<String[]> tripsData) {
+
+        List<Trip> trips = new ArrayList<>();
+        AVL<TripData> tempTripAVL = new AVL<>();
+        for (String[] line : tripsData) {
+            for (String s : line) {
+                if (s.equals("NaN")) s = "0";
+            }
+            TripData temp = new TripData(Double.parseDouble(line[0]), Double.parseDouble(line [3]), Double.parseDouble(line[4]),
+                    Double.parseDouble(line[5]), Double.parseDouble(line[6]), Double.parseDouble(line[7]),
+                    Double.parseDouble(line[8]), Double.parseDouble(line[9]), Double.parseDouble(line[10]),
+                    Double.parseDouble(line[11]), Double.parseDouble(line[12]), Double.parseDouble(line[13]),
+                    Double.parseDouble(line[14]), Double.parseDouble(line[15]), Double.parseDouble(line[16]),
+                    Double.parseDouble(line[17]), Double.parseDouble(line[18]), Double.parseDouble(line[19]),
+                    Double.parseDouble(line[20]), Double.parseDouble(line[21]));
+
+            tempTripAVL.insert(temp);
+
+            if(tripsData.indexOf(line) > 0 && !tripsData.get(tripsData.indexOf(line) - 1)[2].equals(line[2])) {
+                Trip trip = new Trip(Integer.parseInt(line[1]),Integer.parseInt(line[2]), tempTripAVL);
+                trips.add(trip);
+                tempTripAVL = new AVL<>();
+            }
+        }
+
+        return trips;
     }
 
 
