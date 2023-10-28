@@ -43,8 +43,20 @@ public class Trip implements Comparable<Trip> {
     public void setTripData(AVL<TripData> tripData) {
         this.tripData = tripData;
     }
+    public double getTripDistanceEuclidean(){
+        TripData firstTripData = tripData.findMin();
+        TripData lastTripData = tripData.findMax();
 
-    public double getTripDistance(){
+        double x1 = firstTripData.getLongitude();
+        double x2 = lastTripData.getLongitude();
+        double y1 = firstTripData.getLatitude();
+        double y2 = lastTripData.getLatitude();
+
+        return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
+
+
+    }
+    public double getTripDistanceHaversine(){
         TripData firstTripData = tripData.findMin();
         TripData lastTripData = tripData.findMax();
 
@@ -88,9 +100,9 @@ public class Trip implements Comparable<Trip> {
             return Integer.compare(this.getTripID(), o.getTripID());
         }
 
-        if (this.getTripDistance() > o.getTripDistance())
+        if (this.getTripDistanceEuclidean() > o.getTripDistanceEuclidean())
             return 1;
-        else if (this.getTripDistance() < o.getTripDistance())
+        else if (this.getTripDistanceEuclidean() < o.getTripDistanceEuclidean())
             return -1;
         else
             return 0;
