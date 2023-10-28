@@ -18,14 +18,9 @@ public class EX1 {
     //também deverá permitir obter para uma determinada viagem (Trip) todos detalhes e leituras da
     //viagem e os detalhes do veículo associado
 
-    public AVL<VehicleTrips> getAVL(String vehiclesPath1, String vehiclesPath2, String tripsPath){
+    public AVL<VehicleTrips> getAVL(List<Vehicle> vehicles, List<Trip> trips){
 
         AVL<VehicleTrips> vehicleTripsAVL = new AVL<>();
-
-        List<Trip> trips = FileScanner.getTripsList(tripsPath);
-        
-        List<Vehicle> vehicles = FileScanner.getVehicleList(vehiclesPath1);
-        vehicles.addAll(FileScanner.getVehicleList(vehiclesPath2));
 
         for(Vehicle v : vehicles){
             VehicleTrips temp = new VehicleTrips(v);
