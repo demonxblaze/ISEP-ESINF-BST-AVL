@@ -192,4 +192,17 @@ public class Vehicle implements Comparable<Vehicle> {
     public int compareTo(Vehicle v) {
         return this.vehID - v.vehID;
     }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vehID=" + vehID +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", vehicleClass='" + vehicleClass + '\'' +
+                ", engineConfiguration='" + engineConfiguration + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", driveWheels='" + driveWheels + '\'' +
+                ", weight=" + weight +
+                '}';
+    }
 }

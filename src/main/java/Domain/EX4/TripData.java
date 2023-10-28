@@ -423,4 +423,30 @@ public class TripData implements Comparable<TripData> {
             return 0;
         }
     }
+
+    @Override
+    public String toString() {
+        return "TripData{" +
+                "dayNum=" + dayNum +
+                ", timeStamp=" + timeStamp +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", vehicleSpeed=" + vehicleSpeed +
+                ", maf=" + maf +
+                ", engineRPM=" + engineRPM +
+                ", absoluteLoad=" + absoluteLoad +
+                ", outsideTemp=" + outsideTemp +
+                ", fuelRate=" + fuelRate +
+                ", airConPowerKw=" + airConPowerKw +
+                ", airConPowerWatt=" + airConPowerWatt +
+                ", heaterPowerWatt=" + heaterPowerWatt +
+                ", hvBatteryCurrent=" + hvBatteryCurrent +
+                ", hvBatterySoc=" + hvBatterySoc +
+                ", hvBatteryVoltage=" + hvBatteryVoltage +
+                ", shortTermFuelBank1=" + shortTermFuelBank1 +
+                ", shortTermFuelBank2=" + shortTermFuelBank2 +
+                ", longTermFuelBank1=" + longTermFuelBank1 +
+                ", longTermFuelBank2=" + longTermFuelBank2 +
+                '}';
+    }
 }

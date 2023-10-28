@@ -80,4 +80,11 @@ public class VehicleTrips implements Comparable<VehicleTrips> {
         return Objects.hash(vehicle, trips);
     }
 
+    @Override
+    public String toString() {
+        return "VehicleTrips{" +
+                "vehicle=" + vehicle +
+                ", trips=" + trips +
+                '}';
+    }
 }

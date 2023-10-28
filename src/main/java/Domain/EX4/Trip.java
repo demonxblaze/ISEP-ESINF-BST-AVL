@@ -107,4 +107,13 @@ public class Trip implements Comparable<Trip> {
         else
             return 0;
     }
+
+    @Override
+    public String toString() {
+        return "Trip{" +
+                "vehID=" + vehID +
+                ", tripID=" + tripID +
+                ", tripData=" + tripData +
+                '}';
+    }
 }

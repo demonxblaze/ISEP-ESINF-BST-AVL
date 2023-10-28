@@ -44,4 +44,12 @@ public class PairData<K extends Comparable,V> implements Comparable<PairData<K,V
     public int compareTo(PairData o) {
         return 0;
     }
+
+    @Override
+    public String toString() {
+        return "PairData{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+    }
 }
