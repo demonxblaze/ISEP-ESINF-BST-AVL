@@ -2,77 +2,67 @@ package Exercicios;
 
 import java.util.*;
 
+import Domain.EX4.Trip;
+import Domain.EX4.TripSummary;
+import Domain.EX4.VehicleTrips;
 import Domain.TripApagar;
 import Trees.AVL;
 
 public class EX3 {
 
-    private AVL<TripApagar> insertTripsInTheTree(List<String[]> lines) {
-        AVL<TripApagar> trips = new AVL<>();
 
+    public AVL<TripSummary> getTrips(Set<Integer> tripIDs, int min, int max, AVL<VehicleTrips> vehicleTripsAVL) {
 
-        double latitudeStart = 0;
-        double longitudeStart = 0;
-        double latitudeEnd = 0;
-        double longitudeEnd = 0;
-
-        int tripID = -1;
-
-
-
-        for (String[] s : lines) {
-
-
-
-            if (tripID == -1) {
-                tripID = Integer.parseInt(s[0]);
-                latitudeStart = Double.parseDouble(s[1]);
-                longitudeStart = Double.parseDouble(s[2]);
-
-            } else if ( tripID != Integer.parseInt(s[0])) {
-                trips.insert(new TripApagar(tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
-                tripID = Integer.parseInt(s[0]);
-                latitudeStart = Double.parseDouble(s[1]);
-                longitudeStart = Double.parseDouble(s[2]);
-                latitudeEnd =0;
-                longitudeEnd = 0;
-
+        if (tripIDs!=null) {
+            AVL<TripSummary> tripsFounded = new AVL<>();
+            for (Integer i : tripIDs) {
+                Trip temp = getTheTrip(vehicleTripsAVL, new Trip(-1, i, new AVL<>()));
+                if (temp != null) {
+                    tripsFounded.insert(new TripSummary(temp.getTripID(), temp.getTripData().findMin().getLatitude(), temp.getTripData().findMin().getLongitude(),
+                            temp.getTripData().findMax().getLatitude(), temp.getTripData().findMax().getLongitude()));
+                }
             }
-            latitudeEnd = Double.parseDouble(s[1]);
-            longitudeEnd = Double.parseDouble(s[2]);
+            if (tripsFounded.isEmpty()) {
+                return null;
+            } else {
+                return tripsFounded;
+            }
+        }else{
 
+            AVL<Trip> allTrips = new AVL<>();
+            AVL<TripSummary> tripsFounded = new AVL<>();
+            getAllTrips(vehicleTripsAVL, allTrips );
+            Trip minTrip= new Trip(-1,min,new AVL<>());
+            Trip maxTrip= new Trip(-1,max,new AVL<>());
+            for (Trip t : allTrips.findBetween(minTrip, maxTrip).inOrder()) {
+                tripsFounded.insert(new TripSummary(t.getTripID(), t.getTripData().findMin().getLatitude(), t.getTripData().findMin().getLongitude(),
+                        t.getTripData().findMax().getLatitude(),t.getTripData().findMax().getLongitude()));
+            }
+            return tripsFounded;
         }
-
-        trips.insert(new TripApagar(tripID, latitudeStart, longitudeStart, latitudeEnd, longitudeEnd));
-
-        return trips;
     }
 
-    public AVL<TripApagar> getTrips(Set<TripApagar> trips, List<String[]> list){
-
-        AVL<TripApagar> avl = insertTripsInTheTree(list);
-
-        AVL<TripApagar> tripsFounded = new AVL<>();
-
-        for(TripApagar t : trips){
-            tripsFounded.insert(avl.findElement(t));
+    private void getAllTrips(AVL<VehicleTrips> vehicleTripsAVL, AVL<Trip> allTrips) {
+        vehicleTripsAVL.inOrder();
+        for (VehicleTrips vt : vehicleTripsAVL.inOrder()) {
+            for (Trip t: vt.getTrips().inOrder()) {
+                allTrips.insert(t);
+            }
         }
-
-        return tripsFounded;
-
+    }
+    private Trip getTheTrip(AVL<VehicleTrips> vehicleTripsAVL, Trip T) {
+        Trip trip = null;
+        for (VehicleTrips vt : vehicleTripsAVL.inOrder()) {
+            trip = vt.getTrips().findElement(T);
+            if (trip != null) {
+                return trip;
+            }
+        }
+        return null ;
     }
 
-    public AVL<TripApagar> getTrips(int min, int max, List<String[]> list){
-
-        AVL<TripApagar> avl = insertTripsInTheTree(list);
 
 
-        TripApagar minTrip= new TripApagar(min,0,0,0,0);
-        TripApagar maxTrip= new TripApagar(max,0,0,0,0);
-
-        return avl.findBetween(minTrip,maxTrip);
-
-    }
 
 
 

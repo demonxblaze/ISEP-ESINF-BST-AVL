@@ -170,6 +170,20 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
             findBetween(node.getRight(), min, max, result);
         }
     }
+    public AVL<E> copy() {
+        AVL<E> avl = new AVL<>();
+        avl.root = copy(root);
+        return avl;
+    }
+    private Node<E> copy(Node<E> node) {
+        if (node == null) {
+            return null;
+        }
+        Node<E> newNode = new Node<>(node.getElement(), null, null);
+        newNode.setLeft(copy(node.getLeft()));
+        newNode.setRight(copy(node.getRight()));
+        return newNode;
+    }
 
     public E findMin() {
         if (isEmpty()) return null;
@@ -191,5 +205,15 @@ public class AVL<E extends Comparable<E>> extends BST<E> {
         if (node.getRight() == null)
             return node;
         return findMax(node.getRight());
+    }
+
+    public void insertAll(AVL<E> avl) {
+        insertAll(avl.root);
+    }
+    private void insertAll(Node<E> node) {
+        if (node == null) return;
+        insert(node.getElement());
+        insertAll(node.getLeft());
+        insertAll(node.getRight());
     }
 }

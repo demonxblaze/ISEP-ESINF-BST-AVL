@@ -84,6 +84,10 @@ public class Trip implements Comparable<Trip> {
 
     @Override
     public int compareTo(Trip o) {
+        if (o.getVehid()==-1){
+            return Integer.compare(this.getTripID(), o.getTripID());
+        }
+
         if (this.getTripDistance() > o.getTripDistance())
             return 1;
         else if (this.getTripDistance() < o.getTripDistance())
