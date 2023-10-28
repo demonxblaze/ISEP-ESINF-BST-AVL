@@ -1,14 +1,12 @@
 package Exercicios;
 
-import Domain.EX4.PairData;
-import Domain.EX4.Trip;
-import Domain.EX4.Vehicle;
-import Domain.EX4.VehicleTrips;
-import Domain.TripApagar;
+import Domain.PairData;
+import Domain.Trip;
+import Domain.Vehicle;
+import Domain.VehicleTrips;
 import Trees.AVL;
-import java.util.LinkedHashSet;
+
 import java.util.List;
-import java.util.Set;
 
 public class EX4 {
     public AVL<PairData<Integer, Trip>> getTripBiggestDistance(List<Integer> vehIDs, AVL<VehicleTrips> vehicleTrips) {

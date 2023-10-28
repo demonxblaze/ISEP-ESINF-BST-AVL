@@ -1,6 +1,4 @@
-package Domain.EX4;
-
-import java.util.Objects;
+package Domain;
 
 public class TripSummary implements Comparable<TripSummary> {
 

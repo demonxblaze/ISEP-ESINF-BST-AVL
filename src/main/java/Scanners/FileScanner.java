@@ -1,8 +1,7 @@
 package Scanners;
 
-import Domain.EX4.Trip;
-import Domain.EX4.TripData;
-import Domain.EX4.Vehicle;
+import Domain.Trip;
+import Domain.TripData;
 import Trees.AVL;
 
 import java.io.BufferedReader;

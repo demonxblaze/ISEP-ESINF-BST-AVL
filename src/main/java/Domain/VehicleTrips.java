@@ -1,4 +1,4 @@
-package Domain.EX4;
+package Domain;
 
 import Trees.AVL;
 

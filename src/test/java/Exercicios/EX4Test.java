@@ -1,15 +1,13 @@
 package Exercicios;
 
-import Domain.EX4.PairData;
-import Domain.EX4.Trip;
-import Domain.EX4.VehicleTrips;
+import Domain.PairData;
+import Domain.Trip;
+import Domain.VehicleTrips;
 import Scanners.FileScanner;
 import Trees.AVL;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class EX4Test {
     @Test

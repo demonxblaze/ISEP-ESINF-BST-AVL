@@ -1,14 +1,9 @@
 package Exercicios;
 
-import Domain.EX4.Trip;
-import Domain.EX4.TripSummary;
-import Domain.EX4.Vehicle;
-import Domain.EX4.VehicleTrips;
-import Domain.TripApagar;
-import Exercicios.EX3;
+import Domain.TripSummary;
+import Domain.VehicleTrips;
 import Scanners.FileScanner;
 import Trees.AVL;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;

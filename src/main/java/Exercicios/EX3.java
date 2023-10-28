@@ -2,10 +2,9 @@ package Exercicios;
 
 import java.util.*;
 
-import Domain.EX4.Trip;
-import Domain.EX4.TripSummary;
-import Domain.EX4.VehicleTrips;
-import Domain.TripApagar;
+import Domain.Trip;
+import Domain.TripSummary;
+import Domain.VehicleTrips;
 import Trees.AVL;
 
 public class EX3 {

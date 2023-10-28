@@ -1,7 +1,9 @@
 package Exercicios;
 
-import Domain.EX4.*;
-import Scanners.FileScanner;
+import Domain.Trip;
+import Domain.TripData;
+import Domain.Vehicle;
+import Domain.VehicleTrips;
 import Trees.*;
 
 import java.util.ArrayList;
