@@ -176,7 +176,7 @@ public class Vehicle implements Comparable<Vehicle> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Vehicle vehicle = (Vehicle) o;
-        return vehID == vehicle.vehID && weight == vehicle.weight && Objects.equals(vehicleType, vehicle.vehicleType) && Objects.equals(vehicleClass, vehicle.vehicleClass) && Objects.equals(engineConfiguration, vehicle.engineConfiguration) && Objects.equals(transmission, vehicle.transmission) && Objects.equals(driveWheels, vehicle.driveWheels);
+        return vehID == vehicle.vehID;
     }
 
     /**

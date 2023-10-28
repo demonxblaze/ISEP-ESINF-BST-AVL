@@ -10,7 +10,7 @@ public class RandomDataGeneratorEX4 {
 
     public static void main(String[] args) {
         String vehicleCsvFile = "vehicles_data_test_.csv";
-        String tripCsvFile = "random_week_data_test.csv";
+        String tripCsvFile = "random_week_data_test_.csv";
         int numVehicles = 5;
         int tripsPerVehicle = 3;
 

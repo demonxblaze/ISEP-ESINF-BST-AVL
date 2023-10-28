@@ -12,18 +12,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EX4Test {
-
     @Test
     void getTripBiggestDistance() {
-        List<String[]> vehicles1 = FileScanner.lerCSV("project-data/VEData/VED_Static_Data_PHEV&EV.csv");
-        List<String[]> vehicles2 = FileScanner.lerCSV("project-data/VEData/VED_Static_Data_ICE&HEV.csv");
-        List<String[]> trips = FileScanner.lerCSV("project-data/VEData/VED_180404_week.csv");
+        List<String[]> vehicles = FileScanner.lerCSV("project-data/ex4-data/vehicles_data_test_1.csv");
+        List<String[]> trips = FileScanner.lerCSV("project-data/ex4-data/random_week_data_test_1.csv");
 
         EX1 ex1 = new EX1();
-        AVL<VehicleTrips> vehicleTrips = ex1.getAVL(vehicles1, trips);
+        AVL<VehicleTrips> vehicleTrips = ex1.getAVL(vehicles, trips);
 
         EX4 ex4 = new EX4();
-        AVL<PairData<Integer, Trip>> result = ex4.getTripBiggestDistance(List.of(10, 11), vehicleTrips);
+        AVL<PairData<Integer, Trip>> result = ex4.getTripBiggestDistance(List.of(1, 2), vehicleTrips);
         System.out.println(result.toString());
 
     }
