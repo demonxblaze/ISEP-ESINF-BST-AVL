@@ -47,10 +47,10 @@ public class Trip implements Comparable<Trip> {
         TripData firstTripData = tripData.findMin();
         TripData lastTripData = tripData.findMax();
 
-        double x1 = firstTripData.getLongitude();
-        double x2 = lastTripData.getLongitude();
-        double y1 = firstTripData.getLatitude();
-        double y2 = lastTripData.getLatitude();
+        double x1 = firstTripData.getLatitude();
+        double y1 = firstTripData.getLongitude();
+        double x2 = lastTripData.getLatitude();
+        double y2 = lastTripData.getLongitude();
 
         return Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2));
 

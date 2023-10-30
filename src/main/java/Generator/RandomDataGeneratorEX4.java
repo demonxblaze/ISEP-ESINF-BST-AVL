@@ -7,10 +7,11 @@ import java.util.Random;
 public class RandomDataGeneratorEX4 {
     static int maxTimestamp = 10000;
     static int timestampStep = 1000;
+    static int tripCounter = 1;
 
     public static void main(String[] args) {
-        String vehicleCsvFile = "vehicles_data_test_.csv";
-        String tripCsvFile = "random_week_data_test_.csv";
+        String vehicleCsvFile = "vehicles_data_test_4.csv";
+        String tripCsvFile = "random_week_data_test_4.csv";
         int numVehicles = 5;
         int tripsPerVehicle = 3;
 
@@ -71,10 +72,19 @@ public class RandomDataGeneratorEX4 {
     private static void generateTripData(FileWriter writer, int numVehicles, int tripsPerVehicle) throws IOException {
         Random rand = new Random();
         for (int vehId = 1; vehId <= numVehicles; vehId++) {
+
             for (int trip = 1; trip <= tripsPerVehicle; trip++) {
+
+                double latitude = -90 + rand.nextDouble() * 180; // Random starting latitude between -90 and 90 degrees
+                double longitude = -180 + rand.nextDouble() * 360; // Random starting longitude between -180 and 180 degrees
+
+                double latDiff = -1.5 + rand.nextDouble() * 3.0; // Random latitude difference between -1.5 and 1.5
+                double longDiff = -1.5 + rand.nextDouble() * 3.0; // Random longitude difference between -1.5 and 1.5
+
                 for (int timestamp = 0; timestamp < maxTimestamp; timestamp += timestampStep) {
-                    double latitude = 42.0 + rand.nextDouble() * 0.5;
-                    double longitude = -83.8 + rand.nextDouble() * 0.1;
+                    latitude += latDiff;
+                    longitude += longDiff;
+
                     double speed = 40 + rand.nextDouble() * 80;
                     double maf = rand.nextDouble() * 10;
                     int engineRPM = 1000 + rand.nextInt(3000);
@@ -95,7 +105,7 @@ public class RandomDataGeneratorEX4 {
                     String[] row = {
                             String.valueOf(rand.nextDouble() * 10), // DayNum
                             String.valueOf(vehId), // VehId
-                            String.valueOf(trip), // Trip
+                            String.valueOf(tripCounter), // Trip
                             String.valueOf(timestamp), // Timestamp(ms)
                             String.valueOf(latitude), // Latitude[deg]
                             String.valueOf(longitude), // Longitude[deg]
@@ -119,6 +129,7 @@ public class RandomDataGeneratorEX4 {
 
                     writeRow(writer, row);
                 }
+                tripCounter++;
             }
         }
     }

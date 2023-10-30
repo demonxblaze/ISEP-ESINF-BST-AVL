@@ -1,0 +1,31 @@
+Ficheiro Week Data Test1
+
+    Veiculo 1:
+
+        TripID: 1 => Distancia = 13.5646
+        TripID: 2 => Distancia = 11.05486
+        TripID: 3 => Distancia = 13.3604
+
+    Veiculo 2:
+
+        TripID: 4 => Distancia = 11.4842
+        TripID: 5 => Distancia = 14.4664
+        TripID: 6 => Distancia = 4.84688
+
+    Veiculo 3:
+
+        TripID: 7 => Distancia = 7.10047
+        TripID: 8 => Distancia = 4.89194
+        TripID: 9 => Distancia = 10.68312
+
+    Veiculo 4:
+
+        TripID: 10 => Distancia = 8.18188
+        TripID: 11 => Distancia = 13.09567
+        TripID: 12 => Distancia = 13.85282
+
+    Veiculo 5:
+
+        TripID: 13 => Distancia = 5.65589
+        TripID: 14 => Distancia = 12.29366
+        TripID: 15 => Distancia = 6.04886

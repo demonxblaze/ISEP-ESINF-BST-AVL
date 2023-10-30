@@ -189,10 +189,15 @@ public class Vehicle implements Comparable<Vehicle> {
         return Objects.hash(vehID);
     }
 
-    public int compareTo(Vehicle v) {
-        return this.vehID - v.vehID;
+    @Override
+    public int compareTo(Vehicle o) {
+        if (this.getVehID() > o.getVehID())
+            return 1;
+        else if (this.getVehID() < o.getVehID())
+            return -1;
+        else
+            return 0;
     }
-
     @Override
     public String toString() {
         return "Vehicle{" +
@@ -205,4 +210,6 @@ public class Vehicle implements Comparable<Vehicle> {
                 ", weight=" + weight +
                 '}';
     }
+
+
 }
