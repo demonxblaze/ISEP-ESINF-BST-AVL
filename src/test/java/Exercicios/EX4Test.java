@@ -29,7 +29,7 @@ class EX4Test {
         AVL<PairData<Integer, Trip>> result = ex4.getTripBiggestDistance(vehIDs, vehicleTrips);
 
         // Assert
-        //assertEquals(1, result.findElement(new PairData<>(1, null)).getValue().getTripID());
+        assertEquals(1, result.findElement(new PairData<>(1, null)).getValue().getTripID());
         assertEquals(5, result.findElement(new PairData<>(2, null)).getValue().getTripID());
         assertEquals(9, result.findElement(new PairData<>(3, null)).getValue().getTripID());
         assertEquals(12, result.findElement(new PairData<>(4, null)).getValue().getTripID());
