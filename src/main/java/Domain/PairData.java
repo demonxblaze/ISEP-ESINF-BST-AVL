@@ -42,9 +42,9 @@ public class PairData<K extends Comparable,V> implements Comparable<PairData<K,V
 
     @Override
     public int compareTo(PairData o) {
-        if (o.getKey().compareTo(this.getKey()) > 0) return -1;
-        else if (o.getKey().compareTo(this.getKey()) < 0) return 1;
-        else return 0;
+        if (this.key.compareTo((K) o.key) == 0) return 0;
+        else if (this.key.compareTo((K) o.key) > 0) return 1;
+        else return -1;
     }
 
     @Override
