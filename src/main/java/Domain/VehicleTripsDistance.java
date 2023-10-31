@@ -41,6 +41,6 @@ public class VehicleTripsDistance implements Comparable<VehicleTripsDistance> {
 
     @Override
     public int compareTo(VehicleTripsDistance o) {
-        return 0;
+        return this.vehicle.compareTo(o.vehicle);
     }
 }
