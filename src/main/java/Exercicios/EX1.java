@@ -45,7 +45,6 @@ public class EX1 {
         List<Vehicle> vehicles = new ArrayList<>();
 
 
-
         for (String[] line : vehiclesData) {
             if (line[0].equals("NO DATA")) line[0] = "0";
             if (line[6].equals("NO DATA")) line[6] = "0";
@@ -64,6 +63,8 @@ public class EX1 {
             for (String s : line) {
                 if (s.equals("NaN")) s = "0";
             }
+
+
             TripData temp = new TripData(Double.parseDouble(line[0]), Double.parseDouble(line [3]), Double.parseDouble(line[4]),
                     Double.parseDouble(line[5]), Double.parseDouble(line[6]), Double.parseDouble(line[7]),
                     Double.parseDouble(line[8]), Double.parseDouble(line[9]), Double.parseDouble(line[10]),
@@ -79,10 +80,13 @@ public class EX1 {
                 trips.add(trip);
                 tempTripAVL = new AVL<>();
             }
+
         }
 
         return trips;
     }
+
+
 
 
 }
