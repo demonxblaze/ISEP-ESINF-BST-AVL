@@ -57,6 +57,8 @@ public class Trip implements Comparable<Trip> {
 
     }
     public double getTripDistanceHaversine(){
+        // code extracted from https://www.geeksforgeeks.org/program-distance-two-points-earth/
+
         TripData firstTripData = tripData.findMin();
         TripData lastTripData = tripData.findMax();
 
@@ -113,7 +115,6 @@ public class Trip implements Comparable<Trip> {
         return "Trip{" +
                 "vehID=" + vehID +
                 ", tripID=" + tripID +
-                ", tripData=" + tripData +
-                '}';
+                ", distance=" + getTripDistanceEuclidean() + "}";
     }
 }

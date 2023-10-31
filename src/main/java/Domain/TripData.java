@@ -405,12 +405,12 @@ public class TripData implements Comparable<TripData> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TripData trip = (TripData) o;
-        return Double.compare(dayNum, trip.dayNum) == 0 && timeStamp == trip.timeStamp && latitude == trip.latitude && longitude == trip.longitude && vehicleSpeed == trip.vehicleSpeed && maf == trip.maf && engineRPM == trip.engineRPM && Double.compare(absoluteLoad, trip.absoluteLoad) == 0 && outsideTemp == trip.outsideTemp && fuelRate == trip.fuelRate && airConPowerKw == trip.airConPowerKw && airConPowerWatt == trip.airConPowerWatt && heaterPowerWatt == trip.heaterPowerWatt && hvBatteryCurrent == trip.hvBatteryCurrent && hvBatterySoc == trip.hvBatterySoc && hvBatteryVoltage == trip.hvBatteryVoltage && shortTermFuelBank1 == trip.shortTermFuelBank1 && shortTermFuelBank2 == trip.shortTermFuelBank2 && longTermFuelBank1 == trip.longTermFuelBank1 && longTermFuelBank2 == trip.longTermFuelBank2;
+        return timeStamp == trip.timeStamp;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dayNum, timeStamp, latitude, longitude, vehicleSpeed, maf, engineRPM, absoluteLoad, outsideTemp, fuelRate, airConPowerKw, airConPowerWatt, heaterPowerWatt, hvBatteryCurrent, hvBatterySoc, hvBatteryVoltage, shortTermFuelBank1, shortTermFuelBank2, longTermFuelBank1, longTermFuelBank2);
+        return Objects.hash(timeStamp);
     }
 
     @Override

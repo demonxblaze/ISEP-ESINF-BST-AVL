@@ -72,9 +72,7 @@ public class VehicleTrips implements Comparable<VehicleTrips> {
 
     @Override
     public int compareTo(VehicleTrips o) {
-        if (o.getVehicle().getVehID() > this.getVehicle().getVehID()) return -1;
-        else if (o.getVehicle().getVehID() < this.getVehicle().getVehID()) return 1;
-        else return 0;
+        return this.vehicle.compareTo(o.vehicle);
     }
 
     @Override
