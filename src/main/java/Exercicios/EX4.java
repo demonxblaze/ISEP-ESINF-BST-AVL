@@ -13,10 +13,12 @@ public class EX4 {
         AVL<PairData<Integer, Trip>> result = new AVL<>();
 
         try {
+
             for (Integer vehID : vehIDs) {
                 Trip trip = vehicleTrips.findElement(new VehicleTrips(new Vehicle(vehID))).getTrips().findMax();
                 result.insert(new PairData<>(vehID, trip));
             }
+
         } catch (NullPointerException e) {
             System.out.println("EX4.getTripBiggestDistance: " + e.getMessage());
             return null;
