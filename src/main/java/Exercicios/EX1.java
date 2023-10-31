@@ -13,10 +13,10 @@ public class EX1 {
 
 
     // Carregar em BST ou AVL a informação relativa aos dados estáticos dos veículos e dados dinâmicos de
-    //viagens, permitindo efetuar uma pesquisar por VehId para obter os dados estáticos do veículo bem
-    //como todos os detalhes das viagens realizadas. Sem duplicar o carregamento de dados, a estrutura
-    //também deverá permitir obter para uma determinada viagem (Trip) todos detalhes e leituras da
-    //viagem e os detalhes do veículo associado
+    // viagens, permitindo efetuar uma pesquisar por VehId para obter os dados estáticos do veículo bem
+    // como todos os detalhes das viagens realizadas. Sem duplicar o carregamento de dados, a estrutura
+    // também deverá permitir obter para uma determinada viagem (Trip) todos detalhes e leituras da
+    // viagem e os detalhes do veículo associado
 
     public AVL<VehicleTrips> getAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
@@ -44,7 +44,6 @@ public class EX1 {
 
         List<Vehicle> vehicles = new ArrayList<>();
 
-
         for (String[] line : vehiclesData) {
             if (line[0].equals("NO DATA")) line[0] = "0";
             if (line[6].equals("NO DATA")) line[6] = "0";
@@ -59,11 +58,17 @@ public class EX1 {
 
         List<Trip> trips = new ArrayList<>();
         AVL<TripData> tempTripAVL = new AVL<>();
+        int tempID = 0;
+        Trip trip = null;
         for (String[] line : tripsData) {
             for (String s : line) {
                 if (s.equals("NaN")) s = "0";
             }
-
+            if (tempID!= Integer.parseInt(line[2]) || tempID == 0) {
+                trip = new Trip(Integer.parseInt(line[1]), Integer.parseInt(line[2]), new AVL<TripData>());
+                trips.add(trip);
+                tempID = Integer.parseInt(line[2]);
+            }
 
             TripData temp = new TripData(Double.parseDouble(line[0]), Double.parseDouble(line [3]), Double.parseDouble(line[4]),
                     Double.parseDouble(line[5]), Double.parseDouble(line[6]), Double.parseDouble(line[7]),
@@ -73,14 +78,10 @@ public class EX1 {
                     Double.parseDouble(line[17]), Double.parseDouble(line[18]), Double.parseDouble(line[19]),
                     Double.parseDouble(line[20]), Double.parseDouble(line[21]));
 
-            tempTripAVL.insert(temp);
+            trip.addTripData(temp);
 
-            if(tripsData.indexOf(line) > 0 && !tripsData.get(tripsData.indexOf(line) - 1)[2].equals(line[2])) {
-                Trip trip = new Trip(Integer.parseInt(line[1]),Integer.parseInt(line[2]), tempTripAVL);
-                trips.add(trip);
-                tempTripAVL = new AVL<>();
-            }
 
+            tempID = Integer.parseInt(line[2]);
         }
 
         return trips;

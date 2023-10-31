@@ -29,7 +29,7 @@ class EX4Test {
         AVL<PairData<Integer, Trip>> result = ex4.getTripBiggestDistance(vehIDs, vehicleTrips);
 
         // Assert
-        //assertEquals(1, result.findElement(new PairData<>(1, null)).getValue().getTripID());
+        assertEquals(1, result.findElement(new PairData<>(1, null)).getValue().getTripID());
         assertEquals(5, result.findElement(new PairData<>(2, null)).getValue().getTripID());
         assertEquals(9, result.findElement(new PairData<>(3, null)).getValue().getTripID());
         assertEquals(12, result.findElement(new PairData<>(4, null)).getValue().getTripID());
@@ -52,12 +52,13 @@ class EX4Test {
         EX4 ex4 = new EX4();
         AVL<PairData<Integer, Trip>> result = ex4.getTripBiggestDistance(vehIDs, vehicleTrips);
 
+
         // Assert
-        assertEquals(2, result.findElement(new PairData<>(1, null)).getValue().getTripID());
-        assertEquals(4, result.findElement(new PairData<>(2, null)).getValue().getTripID());
-        assertEquals(8, result.findElement(new PairData<>(3, null)).getValue().getTripID());
-        assertEquals(11, result.findElement(new PairData<>(4, null)).getValue().getTripID());
-        assertEquals(14, result.findElement(new PairData<>(5, null)).getValue().getTripID());
+        assertEquals(2, result.findElement(new PairData<>(1, null)).getValue().getTripID()); //3
+        assertEquals(4, result.findElement(new PairData<>(2, null)).getValue().getTripID()); // certo
+        assertEquals(8, result.findElement(new PairData<>(3, null)).getValue().getTripID());//7
+        assertEquals(11, result.findElement(new PairData<>(4, null)).getValue().getTripID());//12
+        assertEquals(14, result.findElement(new PairData<>(5, null)).getValue().getTripID());//13
 
     }
     @Test
@@ -77,11 +78,11 @@ class EX4Test {
         AVL<PairData<Integer, Trip>> result = ex4.getTripBiggestDistance(vehIDs, vehicleTrips);
 
         // Assert
-        assertEquals(1, result.findElement(new PairData<>(1, null)).getValue().getTripID());
-        assertEquals(5, result.findElement(new PairData<>(2, null)).getValue().getTripID());
-        assertEquals(9, result.findElement(new PairData<>(3, null)).getValue().getTripID());
-        assertEquals(10, result.findElement(new PairData<>(4, null)).getValue().getTripID());
-        assertEquals(13, result.findElement(new PairData<>(5, null)).getValue().getTripID());
+        assertEquals(1, result.findElement(new PairData<>(1, null)).getValue().getTripID());//2
+        assertEquals(5, result.findElement(new PairData<>(2, null)).getValue().getTripID());//6
+        assertEquals(9, result.findElement(new PairData<>(3, null)).getValue().getTripID());//8
+        assertEquals(10, result.findElement(new PairData<>(4, null)).getValue().getTripID());//11
+        assertEquals(13, result.findElement(new PairData<>(5, null)).getValue().getTripID());//14
 
     }
     @Test
