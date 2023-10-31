@@ -16,7 +16,7 @@ public class EX1 {
     // viagem e os detalhes do veículo associado
 
     public Structures getStructures(List<String[]> vehiclesData, List<String[]> tripsData){
-        
+
        AVL<VehicleTrips> vehicleTripsAVL = getVehicleTripsAVL(vehiclesData, tripsData);
 
        return new Structures(vehicleTripsAVL);
@@ -45,7 +45,7 @@ public class EX1 {
         return vehicleTripsAVL;
     }
 
-        static List<Vehicle> getVehicleList(List<String[]> vehiclesData) {
+        private List<Vehicle> getVehicleList(List<String[]> vehiclesData) {
 
         List<Vehicle> vehicles = new ArrayList<>();
 
@@ -59,7 +59,7 @@ public class EX1 {
         return vehicles;
     }
 
-    static List<Trip> getTripsList(List<String[]> tripsData) {
+    private List<Trip> getTripsList(List<String[]> tripsData) {
 
         List<Trip> trips = new ArrayList<>();
         AVL<TripData> tempTripAVL = new AVL<>();
