@@ -2,7 +2,7 @@ package Domain;
 
 import java.util.Objects;
 
-public class PairData<K extends Comparable,V> implements Comparable<PairData<K,V>> {
+public class PairData<K extends Comparable<K>,V> implements Comparable<PairData<K,V>> {
     private K key;
     private V value;
 
