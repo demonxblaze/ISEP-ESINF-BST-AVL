@@ -1,9 +1,6 @@
 package Exercicios;
 
-import Domain.Trip;
-import Domain.TripData;
-import Domain.Vehicle;
-import Domain.VehicleTrips;
+import Domain.*;
 import Trees.*;
 
 import java.util.ArrayList;
@@ -18,7 +15,15 @@ public class EX1 {
     // também deverá permitir obter para uma determinada viagem (Trip) todos detalhes e leituras da
     // viagem e os detalhes do veículo associado
 
-    public AVL<VehicleTrips> getAVL(List<String[]> vehiclesData, List<String[]> tripsData){
+    public Structures getStructures(List<String[]> vehiclesData, List<String[]> tripsData){
+        
+       AVL<VehicleTrips> vehicleTripsAVL = getVehicleTripsAVL(vehiclesData, tripsData);
+
+       return new Structures(vehicleTripsAVL);
+
+    }
+
+    private AVL<VehicleTrips> getVehicleTripsAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
 
         List<Vehicle> vehicles = getVehicleList(vehiclesData);
@@ -87,7 +92,15 @@ public class EX1 {
         return trips;
     }
 
+    public Vehicle searchByVehID(AVL<VehicleTrips> vehicleTripsAVL, int vehID){
+        VehicleTrips temp = vehicleTripsAVL.findElement(new VehicleTrips(new Vehicle(vehID)));
+        if(temp == null) return null;
+        return temp.getVehicle();
+    }
 
-
-
+    public Trip searchByTripID(AVL<VehicleTrips> vehicleTripsAVL, int tripID){
+        
+        
+        return null;
+    }
 }
