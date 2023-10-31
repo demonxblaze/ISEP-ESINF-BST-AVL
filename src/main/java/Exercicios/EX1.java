@@ -4,7 +4,9 @@ import Domain.*;
 import Trees.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class EX1 {
 
@@ -18,11 +20,42 @@ public class EX1 {
     public Structures getStructures(List<String[]> vehiclesData, List<String[]> tripsData){
 
        AVL<VehicleTrips> vehicleTripsAVL = getVehicleTripsAVL(vehiclesData, tripsData);
+         AVL<VehicleTripsDistance> vehicleTripsDistanceAVL = getVehicleTripsDistanceAVL(vehiclesData, tripsData);
 
-       return new Structures(vehicleTripsAVL);
+       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL);
 
     }
+    private AVL<VehicleTripsDistance> getVehicleTripsDistanceAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
+        List<Vehicle> vehicles = getVehicleList(vehiclesData);
+        List<Trip> trips = getTripsList(tripsData);
+
+        AVL<VehicleTripsDistance> vehicleTripsDistanceAVL = new AVL<>();
+
+        for(Vehicle v : vehicles){
+            VehicleTripsDistance temp = new VehicleTripsDistance(v);
+
+            for(Trip t : trips){
+
+                double distance = t.getTripDistanceEuclidean();
+
+                if (temp.getTrips().findElement(new PairData<>(distance, null)) != null){
+                    temp.getTrips().findElement(new PairData<>(distance, null)).getValue().add(t);
+
+                } else {
+                    Set<Trip> tripsSet = new HashSet<>();
+                    tripsSet.add(t);
+                    PairData<Double, Set<Trip>> pairData = new PairData<>(distance, tripsSet);
+                    temp.getTrips().insert(pairData);
+                }
+            }
+
+            vehicleTripsDistanceAVL.insert(temp);
+        }
+
+        return vehicleTripsDistanceAVL;
+
+    }
     private AVL<VehicleTrips> getVehicleTripsAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
 
@@ -45,7 +78,7 @@ public class EX1 {
         return vehicleTripsAVL;
     }
 
-        private List<Vehicle> getVehicleList(List<String[]> vehiclesData) {
+    private List<Vehicle> getVehicleList(List<String[]> vehiclesData) {
 
         List<Vehicle> vehicles = new ArrayList<>();
 

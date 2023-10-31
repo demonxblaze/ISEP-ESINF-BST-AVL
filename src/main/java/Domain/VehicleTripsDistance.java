@@ -23,6 +23,21 @@ public class VehicleTripsDistance implements Comparable<VehicleTripsDistance> {
         this.trips = new AVL<>();
     }
 
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public AVL<PairData<Double, Set<Trip>>> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(AVL<PairData<Double, Set<Trip>>> trips) {
+        this.trips = trips;
+    }
 
     @Override
     public int compareTo(VehicleTripsDistance o) {
