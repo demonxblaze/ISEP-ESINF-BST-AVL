@@ -1,6 +1,8 @@
 package Domain;
 
 import Trees.AVL;
+
+import java.util.IllegalFormatCodePointException;
 import java.util.Objects;
 
 
@@ -98,16 +100,8 @@ public class Trip implements Comparable<Trip> {
 
     @Override
     public int compareTo(Trip o) {
-        if (o.getVehid()==-1){
-            return Integer.compare(this.getTripID(), o.getTripID());
-        }
 
-        if (this.getTripDistanceEuclidean() > o.getTripDistanceEuclidean())
-            return 1;
-        else if (this.getTripDistanceEuclidean() < o.getTripDistanceEuclidean())
-            return -1;
-        else
-            return 0;
+        return Integer.compare(this.getTripID(), o.getTripID());
     }
 
     @Override

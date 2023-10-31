@@ -21,8 +21,9 @@ public class EX1 {
 
        AVL<VehicleTrips> vehicleTripsAVL = getVehicleTripsAVL(vehiclesData, tripsData);
          AVL<VehicleTripsDistance> vehicleTripsDistanceAVL = getVehicleTripsDistanceAVL(vehiclesData, tripsData);
+            AVL<TripSummary> tripSummaryAVL = getTripsAVL(tripsData);
 
-       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL);
+       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL);
 
     }
     private AVL<VehicleTripsDistance> getVehicleTripsDistanceAVL(List<String[]> vehiclesData, List<String[]> tripsData){
@@ -91,7 +92,14 @@ public class EX1 {
 
         return vehicles;
     }
-
+    private AVL<TripSummary> getTripsAVL(List<String[]> tripsData){
+        AVL<TripSummary> trips = new AVL<>();
+        for (Trip t: getTripsList(tripsData)) {
+            trips.insert(new TripSummary(t.getTripID(), t.getTripData().findMin().getLatitude(), t.getTripData().findMin().getLongitude(),
+                    t.getTripData().findMax().getLatitude(),t.getTripData().findMax().getLongitude()));
+                    }
+        return trips;
+    }
     private List<Trip> getTripsList(List<String[]> tripsData) {
 
         List<Trip> trips = new ArrayList<>();
