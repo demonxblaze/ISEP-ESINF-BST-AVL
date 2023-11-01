@@ -10,10 +10,11 @@ public class Trip implements Comparable<Trip> {
 
     int vehID;
     int tripID;
+    double dayNum; // day number of the trip
     AVL<TripData> tripData;
 
 
-    public Trip(int vehid, int tripID, AVL<TripData> tripData) {
+    public Trip(int vehid, int tripID,double dayNum, AVL<TripData> tripData) {
         this.vehID = vehid;
         this.tripID = tripID;
         this.tripData = tripData;

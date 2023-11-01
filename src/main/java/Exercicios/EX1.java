@@ -115,12 +115,12 @@ public class EX1 {
                 if (s.equals("NaN")) s = "0";
             }
             if (tempID!= Integer.parseInt(line[2]) || tempID == 0) {
-                trip = new Trip(Integer.parseInt(line[1]), Integer.parseInt(line[2]), new AVL<TripData>());
+                trip = new Trip(Integer.parseInt(line[1]), Integer.parseInt(line[2]),Double.parseDouble(line[0]), new AVL<TripData>());
                 trips.add(trip);
                 tempID = Integer.parseInt(line[2]);
             }
 
-            TripData temp = new TripData(Double.parseDouble(line[0]), Double.parseDouble(line [3]), Double.parseDouble(line[4]),
+            TripData temp = new TripData(Double.parseDouble(line [3]), Double.parseDouble(line[4]),
                     Double.parseDouble(line[5]), Double.parseDouble(line[6]), Double.parseDouble(line[7]),
                     Double.parseDouble(line[8]), Double.parseDouble(line[9]), Double.parseDouble(line[10]),
                     Double.parseDouble(line[11]), Double.parseDouble(line[12]), Double.parseDouble(line[13]),
@@ -143,9 +143,9 @@ public class EX1 {
         return temp.getVehicle();
     }
 
-    public Trip searchByTripID(AVL<VehicleTrips> vehicleTripsAVL, int tripID){
-        
-        
-        return null;
+    public PairData<Trip, Vehicle> searchByTripID(AVL<VehicleTrips> vehicleTripsAVL, Trip trip){
+        VehicleTrips temp = vehicleTripsAVL.findElement(new VehicleTrips(new Vehicle(trip.getVehid())));
+        if(temp == null) return null;
+        return new PairData<>(temp.getTrips().findElement(trip), temp.getVehicle());
     }
 }

@@ -6,7 +6,6 @@ import java.util.Objects;
  * This class represents a trip data taken by a vehicle and contains various data points related to the trip.
  */
 public class TripData implements Comparable<TripData> {
-    double dayNum; // day number of the trip
     double timeStamp; // timestamp of the trip
     double latitude; // latitude of the vehicle during the trip
     double longitude; // longitude of the vehicle during the trip
@@ -31,7 +30,6 @@ public class TripData implements Comparable<TripData> {
 
     /**
      * Constructor for the TripData class.
-     * @param dayNum day number of the trip
      * @param timeStamp timestamp of the trip
      * @param latitude latitude of the vehicle during the trip
      * @param longitude longitude of the vehicle during the trip
@@ -52,8 +50,8 @@ public class TripData implements Comparable<TripData> {
      * @param longTermFuelBank1 long term fuel bank 1 during the trip
      * @param longTermFuelBank2 long term fuel bank 2 during the trip
      */
-    public TripData(double dayNum, double timeStamp, double latitude, double longitude, double vehicleSpeed, double maf, double engineRPM, double absoluteLoad, double outsideTemp, double fuelRate, double airConPowerKw, double airConPowerWatt, double heaterPowerWatt, double hvBatteryCurrent, double hvBatterySoc, double hvBatteryVoltage, double shortTermFuelBank1, double shortTermFuelBank2, double longTermFuelBank1, double longTermFuelBank2) {
-        this.dayNum = dayNum;
+    public TripData(double timeStamp, double latitude, double longitude, double vehicleSpeed, double maf, double engineRPM, double absoluteLoad, double outsideTemp, double fuelRate, double airConPowerKw, double airConPowerWatt, double heaterPowerWatt, double hvBatteryCurrent, double hvBatterySoc, double hvBatteryVoltage, double shortTermFuelBank1, double shortTermFuelBank2, double longTermFuelBank1, double longTermFuelBank2) {
+
         this.timeStamp = timeStamp;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -75,26 +73,8 @@ public class TripData implements Comparable<TripData> {
         this.longTermFuelBank2 = longTermFuelBank2;
     }
 
-    /**
-     * Getter method for dayNum.
-     * @return the dayNum
-     */
-    public double getDayNum() {
-        return dayNum;
-    }
 
-    /**
-     * Setter method for dayNum.
-     * @param dayNum the dayNum to set
-     */
-    public void setDayNum(double dayNum) {
-        this.dayNum = dayNum;
-    }
 
-    /**
-     * Getter method for timeStamp.
-     * @return the timeStamp
-     */
     public double getTimeStamp() {
         return timeStamp;
     }
@@ -427,7 +407,6 @@ public class TripData implements Comparable<TripData> {
     @Override
     public String toString() {
         return "TripData{" +
-                "dayNum=" + dayNum +
                 ", timeStamp=" + timeStamp +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +

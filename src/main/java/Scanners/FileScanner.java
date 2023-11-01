@@ -101,7 +101,7 @@ public interface FileScanner {
             for (String s : line) {
                 if (s.equals("NaN")) s = "0";
             }
-            TripData temp = new TripData(Double.parseDouble(line[0]), Double.parseDouble(line [3]), Double.parseDouble(line[4]),
+            TripData temp = new TripData( Double.parseDouble(line [3]), Double.parseDouble(line[4]),
                     Double.parseDouble(line[5]), Double.parseDouble(line[6]), Double.parseDouble(line[7]),
                     Double.parseDouble(line[8]), Double.parseDouble(line[9]), Double.parseDouble(line[10]),
                     Double.parseDouble(line[11]), Double.parseDouble(line[12]), Double.parseDouble(line[13]),
@@ -112,7 +112,7 @@ public interface FileScanner {
             tempTripAVL.insert(temp);
 
             if(lines.indexOf(line) > 0 && !lines.get(lines.indexOf(line) - 1)[2].equals(line[2])) {
-                Trip trip = new Trip(Integer.parseInt(line[1]),Integer.parseInt(line[2]), tempTripAVL);
+                Trip trip = new Trip(Integer.parseInt(line[1]),Integer.parseInt(line[2]),Double.parseDouble(line[0]), tempTripAVL);
                 trips.add(trip);
                 tempTripAVL = new AVL<>();
             }
