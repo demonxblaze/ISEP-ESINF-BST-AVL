@@ -22,9 +22,19 @@ public class EX1 {
        AVL<VehicleTrips> vehicleTripsAVL = getVehicleTripsAVL(vehiclesData, tripsData);
        AVL<VehicleTripsDistance> vehicleTripsDistanceAVL = getVehicleTripsDistanceAVL(vehiclesData, tripsData);
        AVL<TripSummary> tripSummaryAVL = getTripsAVL(tripsData);
+       AVL<DayNumTrip> dayNumAvl = getDayNumAVL(vehiclesData,tripsData);
 
-       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL);
+       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl);
 
+    }
+    private AVL<DayNumTrip> getDayNumAVL(List<String[]> vehiclesData,List<String[]> tripsData) {
+        List<Vehicle> vehicles = getVehicleList(vehiclesData);
+        List<Trip> trips = getTripsList(tripsData);
+        AVL<DayNumTrip> dayNumAvl = new AVL<>();
+         //My structure : AVL tree of DayNumTrip. Each DayNumTrip has a AVL tree of trips that have the same dayNumvalue in their tripdata
+
+        
+        return null;
     }
     private AVL<VehicleTripsDistance> getVehicleTripsDistanceAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
@@ -61,6 +71,7 @@ public class EX1 {
         return vehicleTripsDistanceAVL;
 
     }
+
     private AVL<VehicleTrips> getVehicleTripsAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
 
