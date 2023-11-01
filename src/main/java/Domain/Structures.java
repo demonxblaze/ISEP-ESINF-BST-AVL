@@ -6,10 +6,12 @@ public class Structures {
     AVL<VehicleTrips> vehicleTripsAVL;
     AVL<VehicleTripsDistance> vehicleTripsDistanceAVL;
     AVL<TripSummary> tripSummaryAVL;
-    public Structures(AVL<VehicleTrips> vehicleTripsAVL, AVL<VehicleTripsDistance> vehicleTripsDistanceAVL, AVL<TripSummary> tripSummaryAVL) {
+    AVL<DayNumTrip> dayNumAvl;
+    public Structures(AVL<VehicleTrips> vehicleTripsAVL, AVL<VehicleTripsDistance> vehicleTripsDistanceAVL, AVL<TripSummary> tripSummaryAVL,AVL<DayNumTrip> dayNumAvl) {
         this.vehicleTripsAVL = vehicleTripsAVL;
         this.vehicleTripsDistanceAVL = vehicleTripsDistanceAVL;
         this.tripSummaryAVL = tripSummaryAVL;
+        this.dayNumAvl = dayNumAvl;
     }
 
     public AVL<VehicleTrips> getVehicleTripsAVL() {
