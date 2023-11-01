@@ -1,74 +1,75 @@
 package Trees;
 
-import Trees.BST;
-import org.w3c.dom.Node;
-
 import java.awt.geom.Point2D;
 import java.util.Comparator;
 
-public class KDTREE<E  extends Comparable<E>> extends BST<E> {
-
-    protected TwoDNode<E> root;
+public class KDTree<E extends Comparable<E>> extends BST<E> implements KDTreeNodeInterface {
 
     // Nested static class for a 2DTree node.
-    protected class TwoDNode<E> extends Node<E>  {
-        protected E info;
-        protected Point2D.Double coords;
-        protected TwoDNode<E> left;
-        protected TwoDNode<E> right;
+    private static class KDNode<E> {
 
-        public TwoDNode(E e,Point2D.Double coords, Node<E> leftChild, Node<E> rightChild) {
-            super(e, leftChild, rightChild);
+        private Point2D.Double coords;
+        private E info;
+        private KDNode<E> left;
+        private KDNode<E> right;
 
+        public KDNode(Point2D.Double coords, E info) {
+            this.coords = coords;
+            this.info = info;
         }
-        public double getX(){
+
+        public double getX() {
             return coords.getX();
         }
-        public double getY(){
+
+        public double getY() {
             return coords.getY();
         }
 
-        @Override
-        public TwoDNode<E> getLeft() {
+        public KDNode<E> getLeft() {
             return left;
         }
 
-        public void setLeft(TwoDNode<E> left) {
-            this.left = left;
-        }
-
-        @Override
-        public TwoDNode<E> getRight() {
+        public KDNode<E> getRight() {
             return right;
         }
 
-        public void setRight(TwoDNode<E> right) {
+        public void setLeft(KDNode<E> left) {
+            this.left = left;
+        }
+
+        public void setRight(KDNode<E> right) {
             this.right = right;
         }
 
-        public void setObject(TwoDNode<E> node) {
-            this.info = node.info;
-            this.coords = node.coords;
-            this.left = node.left;
-            this.right = node.right;
+        public E getInfo() {
+            return info;
+        }
+
+        public void setInfo(E info) {
+            this.info = info;
         }
 
     }
-        public KDTREE() {
-            root= new TwoDNode<E>(null,null,null,null);
+
+    protected KDNode<E> root;
+
+    public KDTree() {
+        root = null;
+    }
+
+    private final Comparator<KDNode<E>> cmpX = new Comparator<KDNode<E>>() {
+        @Override
+        public int compare(KDNode<E> p1, KDNode<E> p2) {
+            return Double.compare(p1.getX(), p2.getX());
         }
-        private final Comparator<TwoDNode<E>> cmpX = new Comparator<TwoDNode<E>>(){
-            @Override
-            public int compare(TwoDNode<E> p1, TwoDNode<E> p2) {
-                return Double.compare(p1.getX(), p2.getX());
-            }
-        };
-        private final Comparator<TwoDNode<E>> cmpY = new Comparator<TwoDNode<E>>(){
-            @Override
-            public int compare(TwoDNode<E> p1, TwoDNode<E> p2) {
-                return Double.compare(p1.getY(), p2.getY());
-            }
-        };
+    };
+    private final Comparator<KDNode<E>> cmpY = new Comparator<KDNode<E>>() {
+        @Override
+        public int compare(KDNode<E> p1, KDNode<E> p2) {
+            return Double.compare(p1.getY(), p2.getY());
+        }
+    };
 /*
     @Override
     public void insert(E element) {
@@ -121,5 +122,5 @@ public class KDTREE<E  extends Comparable<E>> extends BST<E> {
             }
         }
 */
-    }
+}
 
