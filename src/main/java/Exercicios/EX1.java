@@ -20,8 +20,8 @@ public class EX1 {
     public Structures getStructures(List<String[]> vehiclesData, List<String[]> tripsData){
 
        AVL<VehicleTrips> vehicleTripsAVL = getVehicleTripsAVL(vehiclesData, tripsData);
-         AVL<VehicleTripsDistance> vehicleTripsDistanceAVL = getVehicleTripsDistanceAVL(vehiclesData, tripsData);
-            AVL<TripSummary> tripSummaryAVL = getTripsAVL(tripsData);
+       AVL<VehicleTripsDistance> vehicleTripsDistanceAVL = getVehicleTripsDistanceAVL(vehiclesData, tripsData);
+       AVL<TripSummary> tripSummaryAVL = getTripsAVL(tripsData);
 
        return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL);
 
@@ -38,16 +38,20 @@ public class EX1 {
 
             for(Trip t : trips){
 
-                double distance = t.getTripDistanceEuclidean();
+                if (t.getVehid() == v.getVehID()){
 
-                if (temp.getTrips().findElement(new PairData<>(distance, null)) != null){
-                    temp.getTrips().findElement(new PairData<>(distance, null)).getValue().add(t);
+                    double distance = t.getTripDistanceEuclidean();
 
-                } else {
-                    Set<Trip> tripsSet = new HashSet<>();
-                    tripsSet.add(t);
-                    PairData<Double, Set<Trip>> pairData = new PairData<>(distance, tripsSet);
-                    temp.getTrips().insert(pairData);
+                    if (temp.getTrips().findElement(new PairData<>(distance, null)) != null){
+                        temp.getTrips().findElement(new PairData<>(distance, null)).getValue().add(t);
+
+                    } else {
+                        Set<Trip> tripsSet = new HashSet<>();
+                        tripsSet.add(t);
+                        PairData<Double, Set<Trip>> pairData = new PairData<>(distance, tripsSet);
+                        temp.getTrips().insert(pairData);
+                    }
+
                 }
             }
 

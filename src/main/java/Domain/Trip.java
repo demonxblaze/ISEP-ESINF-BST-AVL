@@ -19,6 +19,10 @@ public class Trip implements Comparable<Trip> {
         this.tripData = tripData;
     }
 
+    public Trip(int tripID) {
+        this.tripID = tripID;
+    }
+
     public int getVehid() {
         return vehID;
     }

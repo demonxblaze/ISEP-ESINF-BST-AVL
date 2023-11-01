@@ -1,28 +1,27 @@
 package Exercicios;
 
-import Domain.PairData;
-import Domain.Trip;
-import Domain.Vehicle;
-import Domain.VehicleTrips;
+import Domain.*;
 import Trees.AVL;
 
 import java.util.List;
 import java.util.Set;
 
 public class EX4 {
-    public AVL<PairData<Integer, Trip>> getTripBiggestDistance(List<Integer> vehIDs, AVL<VehicleTrips> vehicleTrips) {
-        AVL<PairData<Integer, Trip>> result = new AVL<>();
+    public AVL<PairData<Integer, Set<Trip>>> getTripBiggestDistance(List<Integer> vehIDs, AVL<VehicleTripsDistance> vehicleTrips) {
+        AVL<PairData<Integer, Set<Trip>>> result = new AVL<>();
 
-        try {
+        for (Integer vehID : vehIDs) {
+            try {
+                Set<Trip> trip = vehicleTrips.findElement(new VehicleTripsDistance(new Vehicle(vehID))).getTrips().findMax().getValue();
 
-            for (Integer vehID : vehIDs) {
-                Trip trip = vehicleTrips.findElement(new VehicleTrips(new Vehicle(vehID))).getTrips().findMax();
-                result.insert(new PairData<>(vehID, trip));
+                if (trip != null)
+                    result.insert(new PairData<>(vehID, trip));
+
+
+            } catch (NullPointerException e) {
+                System.out.println("EX4.getTripBiggestDistance: " + e.getMessage());
             }
 
-        } catch (NullPointerException e) {
-            System.out.println("EX4.getTripBiggestDistance: " + e.getMessage());
-            return null;
         }
 
         return result;
