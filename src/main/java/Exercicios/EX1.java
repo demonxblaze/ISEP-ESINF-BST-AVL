@@ -117,13 +117,15 @@ public class EX1 {
     }
 
 
-    private List<Trip> getTripsList(List<String[]> tripsData) {
 
+    private List<Trip> getTripsList(List<String[]> tripsData) {
+        
         List<Trip> trips = new ArrayList<>();
         AVL<TripData> tempTripAVL = new AVL<>();
         int tempID = 0;
         Trip trip = null;
         for (String[] line : tripsData) {
+
             for (String s : line) {
                 if (s.equals("NaN")) s = "0";
             }
