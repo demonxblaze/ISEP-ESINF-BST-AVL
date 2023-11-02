@@ -115,6 +115,8 @@ public class EX1 {
                     }
         return trips;
     }
+
+
     private List<Trip> getTripsList(List<String[]> tripsData) {
 
         List<Trip> trips = new ArrayList<>();
