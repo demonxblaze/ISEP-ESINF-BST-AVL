@@ -82,7 +82,7 @@ public class KDTree<E  extends Comparable<E>> extends BST<E> implements KDTreeNo
 
 
 
-    public void insert(E element, double x, double y ) {
+    public void insertInKD(E element, double x, double y ) {
         if (element == null) return;
 
         root = insert( root, new KDNode<>(x, y ,element), true);
@@ -112,7 +112,7 @@ public class KDTree<E  extends Comparable<E>> extends BST<E> implements KDTreeNo
 
     }
 
-    private E findNearestNeighbour(double x, double y, E element){
+    public E findNearestNeighbour(double x, double y){
         KDNode<E> result = findNearestNeighbour(root, x, y, root, true );
         return result.getInfo();
     }

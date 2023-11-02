@@ -3,10 +3,7 @@ package Exercicios;
 import Domain.*;
 import Trees.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class EX1 {
 
@@ -23,8 +20,8 @@ public class EX1 {
        AVL<VehicleTripsDistance> vehicleTripsDistanceAVL = getVehicleTripsDistanceAVL(vehiclesData, tripsData);
        AVL<TripSummary> tripSummaryAVL = getTripsAVL(tripsData);
        AVL<DayNumTrip> dayNumAvl = getDayNumAVL(vehiclesData,tripsData);
-
-       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl);
+       Map<String, KDTree<Integer>> forKd = tripsForKd( tripsData);
+       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl, forKd);
 
     }
     private AVL<DayNumTrip> getDayNumAVL(List<String[]> vehiclesData,List<String[]> tripsData) {
@@ -106,6 +103,18 @@ public class EX1 {
         }
 
         return vehicles;
+    }
+    public Map<String, KDTree<Integer>> tripsForKd(List<String[]> tripsData){
+        Iterable<TripSummary> a  = getTripsAVL(tripsData).inOrder();
+        Map<String, KDTree<Integer>> tripsForKd = new HashMap<>();
+        tripsForKd.put("START", new KDTree<Integer>());
+        tripsForKd.put("END", new KDTree<Integer>());
+        for (TripSummary t: a) {
+            tripsForKd.get("START").insertInKD(t.getTripID(), t.getLatitudeStart(), t.getLongitudeStart());
+            tripsForKd.get("END").insertInKD(t.getTripID(), t.getLatitudeEnd(), t.getLongitudeEnd());
+        }
+
+        return tripsForKd;
     }
     private AVL<TripSummary> getTripsAVL(List<String[]> tripsData){
         AVL<TripSummary> trips = new AVL<>();

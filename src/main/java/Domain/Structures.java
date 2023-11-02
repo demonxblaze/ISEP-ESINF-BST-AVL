@@ -1,17 +1,30 @@
 package Domain;
 
 import Trees.AVL;
+import Trees.KDTree;
+
+import java.util.Map;
 
 public class Structures {
     AVL<VehicleTrips> vehicleTripsAVL;
     AVL<VehicleTripsDistance> vehicleTripsDistanceAVL;
     AVL<TripSummary> tripSummaryAVL;
     AVL<DayNumTrip> dayNumAvl;
-    public Structures(AVL<VehicleTrips> vehicleTripsAVL, AVL<VehicleTripsDistance> vehicleTripsDistanceAVL, AVL<TripSummary> tripSummaryAVL,AVL<DayNumTrip> dayNumAvl) {
+    Map<String, KDTree<Integer>> forKd;
+    public Structures(AVL<VehicleTrips> vehicleTripsAVL, AVL<VehicleTripsDistance> vehicleTripsDistanceAVL, AVL<TripSummary> tripSummaryAVL,AVL<DayNumTrip> dayNumAvl, Map<String, KDTree<Integer>> forKd) {
         this.vehicleTripsAVL = vehicleTripsAVL;
         this.vehicleTripsDistanceAVL = vehicleTripsDistanceAVL;
         this.tripSummaryAVL = tripSummaryAVL;
         this.dayNumAvl = dayNumAvl;
+        this.forKd = forKd;
+    }
+
+    public Map<String, KDTree<Integer>> getForKd() {
+        return forKd;
+    }
+
+    public void setForKd(Map<String, KDTree<Integer>> forKd) {
+        this.forKd = forKd;
     }
 
     public AVL<VehicleTrips> getVehicleTripsAVL() {
