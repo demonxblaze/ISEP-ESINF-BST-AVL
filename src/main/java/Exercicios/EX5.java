@@ -19,6 +19,8 @@ public class EX5 {
             Integer closestStart = tripsKD.get("START").findNearestNeighbour(origem.getX(),origem.getY());
             Integer closestEnd = tripsKD.get("END").findNearestNeighbour(destino.getX(),destino.getY());
 
+            if (closestEnd== null || closestStart == null) return null;
+
             if (!closestEnd.equals(closestStart)){
 
                 TripSummary bestStart = trips.findElement(new TripSummary(closestStart,0,0,0,0));
@@ -27,7 +29,8 @@ public class EX5 {
                 tripsFounded.add(bestStart);
                 tripsFounded.add(bestEnd);
             }else{
-                tripsFounded.add(new TripSummary(closestStart,0,0,0,0));
+                TripSummary bestTrip = trips.findElement(new TripSummary(closestStart,0,0,0,0));
+                tripsFounded.add(new TripSummary(closestStart, bestTrip.getLatitudeStart(), bestTrip.getLongitudeStart(), bestTrip.getLatitudeEnd(), bestTrip.getLongitudeEnd()));
             }
 
         return tripsFounded;

@@ -1,5 +1,7 @@
 package Trees;
 
+import com.sun.source.tree.IfTree;
+
 import java.awt.geom.Point2D;
 import java.util.Comparator;
 
@@ -89,31 +91,33 @@ public class KDTree<E  extends Comparable<E>> extends BST<E> implements KDTreeNo
     }
     private KDNode<E> insert(KDNode<E> currentNode, KDNode<E> node,
                                boolean divX){
-
         if (currentNode == null) {
             return node;
         }
-        if (divX) {
-            if (cmpX.compare(node, currentNode) < 0) {
-                currentNode.setLeft(insert(currentNode.getLeft(), node, false));
+        if (node.coords.equals(currentNode.coords)) {
+            return currentNode;
+        }
+        int cmpResult = divX ? cmpX.compare(node, currentNode) : cmpY.compare(node, currentNode);
+
+        if (cmpResult < 0) {
+            if (currentNode.left == null) {
+                currentNode.left = node;
             } else {
-                currentNode.setRight(insert(currentNode.getRight(), node, false));
+                insert(currentNode.left, node, !divX);
             }
         } else {
-            if (cmpY.compare(node, currentNode) < 0) {
-                currentNode.setLeft(insert(currentNode.getLeft(), node, true));
+            if (currentNode.right == null) {
+                currentNode.right = node;
             } else {
-                currentNode.setRight(insert(currentNode.getRight(), node, true));
+                insert(currentNode.right, node, !divX);
             }
         }
-
-        return node;
-
-
+        return currentNode;
     }
 
     public E findNearestNeighbour(double x, double y){
         KDNode<E> result = findNearestNeighbour(root, x, y, root, true );
+        if (result == null) return null;
         return result.getInfo();
     }
     private KDNode<E> findNearestNeighbour(KDNode<E> node, double x, double y,
