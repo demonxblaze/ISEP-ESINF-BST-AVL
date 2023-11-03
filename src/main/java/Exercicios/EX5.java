@@ -32,7 +32,7 @@ public class EX5 {
         } else {
 
             TripSummary bestTrip = trips.findElement(new TripSummary(closestStart, 0, 0, 0, 0));
-            tripsFounded.add(new TripSummary(closestStart, bestTrip.getLatitudeStart(), bestTrip.getLongitudeStart(), bestTrip.getLatitudeEnd(), bestTrip.getLongitudeEnd()));
+            tripsFounded.add(bestTrip);
         }
 
         return tripsFounded;
