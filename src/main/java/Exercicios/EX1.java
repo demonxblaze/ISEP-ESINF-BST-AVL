@@ -107,8 +107,8 @@ public class EX1 {
     public Map<String, KDTree<Integer>> tripsForKd(List<String[]> tripsData){
         Iterable<TripSummary> a  = getTripsAVL(tripsData).inOrder();
         Map<String, KDTree<Integer>> tripsForKd = new HashMap<>();
-        tripsForKd.put("START", new KDTree<Integer>());
-        tripsForKd.put("END", new KDTree<Integer>());
+        tripsForKd.put("START", new KDTree<>());
+        tripsForKd.put("END", new KDTree<>());
         for (TripSummary t: a) {
             tripsForKd.get("START").insertInKD(t.getTripID(), t.getLatitudeStart(), t.getLongitudeStart());
             tripsForKd.get("END").insertInKD(t.getTripID(), t.getLatitudeEnd(), t.getLongitudeEnd());

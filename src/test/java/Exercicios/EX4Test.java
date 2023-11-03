@@ -15,6 +15,9 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 class EX4Test {
+    /**
+     * Test if the method returns an empty AVL when the input is empty
+     */
     @Test
     void testEmptyInput() {
         // Arrange
@@ -30,6 +33,9 @@ class EX4Test {
 
     }
 
+    /**
+     * Test if the method returns an empty AVL when the vehicle IDs do not exist
+     */
     @Test
     void testNonexistentVehicles() {
         // Arrange
@@ -49,6 +55,9 @@ class EX4Test {
         }
     }
 
+    /**
+     * Test if the method returns the correct AVL when the vehicle IDs exist, data values from file 1
+     */
     @Test
     void testBiggestDistance_week_test1() {
         // Arrange
@@ -74,6 +83,10 @@ class EX4Test {
         assertTrue(result.findElement(new PairData<>(5, null)).getValue().contains(new Trip(16)));
 
     }
+
+    /**
+     * Test if the method returns the correct AVL when the vehicle IDs exist, data values from file 2
+     */
     @Test
     void testBiggestDistance_week_test2() {
         // Arrange
@@ -98,6 +111,10 @@ class EX4Test {
         assertTrue(result.findElement(new PairData<>(4, null)).getValue().contains(new Trip(11)));
         assertTrue(result.findElement(new PairData<>(5, null)).getValue().contains(new Trip(14)));
     }
+
+    /**
+     * Test if the method returns the correct AVL when the vehicle IDs exist, data values from file 3
+     */
     @Test
     void testBiggestDistance_week_test3() {
         // Arrange
@@ -122,6 +139,10 @@ class EX4Test {
         assertTrue(result.findElement(new PairData<>(5, null)).getValue().contains(new Trip(13)));
 
     }
+
+    /**
+     * Test if the method returns the correct AVL when the vehicle IDs exist, data values from file 4
+     */
     @Test
     void testBiggestDistance_week_test4() {
         // Arrange
@@ -146,6 +167,9 @@ class EX4Test {
         assertTrue(result.findElement(new PairData<>(5, null)).getValue().contains(new Trip(14)));
     }
 
+    /**
+     * Test if the method returns the correct AVL when the vehicle IDs exist, tested with the main file, checked 3 random vehicles
+     */
     @Test
     void testBiggestDistance_Main_File() {
         // Arrange
