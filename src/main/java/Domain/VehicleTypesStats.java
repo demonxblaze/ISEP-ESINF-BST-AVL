@@ -86,10 +86,29 @@ private double ICECurrentSpeed;
         this.ICECurrentSpeed=0;
 
     }
-
-    public void checkPHEVSpeed(double speed){
-        PHEVCurrentSpeed+=speed;
+    public void checkPHEV(double speed, double load, double oat){
         PHEVCount++;
+        checkPHEVSpeed(speed);
+        checkPHEVLoad(load);
+        checkPHEVOAT(oat);
+
+    }
+    public void checkHEV(double speed, double load, double oat){
+        HEVCount++;
+        checkHEVSpeed(speed);
+        checkHEVLoad(load);
+        checkHEVOAT(oat);
+    }
+    public void checkICE(double speed, double load, double oat){
+        ICECount++;
+        checkICESpeed(speed);
+        checkICELoad(load);
+        checkICEOAT(oat);
+    }
+
+    private void checkPHEVSpeed(double speed){
+        PHEVCurrentSpeed+=speed;
+
        
         if(speed>this.PHEVMaxSpeed){
             setPHEVMaxSpeed(speed);
@@ -101,8 +120,8 @@ private double ICECurrentSpeed;
         setPHEVAvgSpeed(PHEVCurrentSpeed/PHEVCount);
 
     }
-    public void checkHEVSpeed(double speed){
-        HEVCount++;
+    private void checkHEVSpeed(double speed){
+
         if(speed>this.HEVMaxSpeed){
             setHEVMaxSpeed(speed);
         }
@@ -111,8 +130,8 @@ private double ICECurrentSpeed;
         }
         setHEVAvgSpeed(HEVCurrentSpeed/HEVCount);
     }
-    public void checkICESpeed(double speed){
-        ICECount++;
+    private void checkICESpeed(double speed){
+
         if(speed>this.ICEMaxSpeed){
             setICEMaxSpeed(speed);
         }
@@ -121,8 +140,8 @@ private double ICECurrentSpeed;
         }
         setICEAvgSpeed(ICECurrentSpeed/ICECount);
     }
-    public void checkPHEVLoad(double load){
-        PHEVCount++;
+    private void checkPHEVLoad(double load){
+
         if(load>this.PHEVMaxLoad){
             setPHEVMaxLoad(load);
         }
@@ -131,8 +150,8 @@ private double ICECurrentSpeed;
         }
         setPHEVAvgLoad(PHEVCurrentLoad/PHEVCount);
     }
-    public void checkHEVLoad(double load){
-        HEVCount++;
+    private void checkHEVLoad(double load){
+
         if(load>this.HEVMaxLoad){
             setHEVMaxLoad(load);
         }
@@ -142,7 +161,7 @@ private double ICECurrentSpeed;
         setHEVAvgLoad(HEVCurrentLoad/HEVCount);
     }
     public void checkICELoad(double load){
-        ICECount++;
+
         if(load>this.ICEMaxLoad){
             setICEMaxLoad(load);
         }
@@ -151,8 +170,8 @@ private double ICECurrentSpeed;
         }
         setICEAvgLoad(ICECurrentLoad/ICECount);
     }   
-    public void checkPHEVOAT(double oat){
-        PHEVCount++;
+    private void checkPHEVOAT(double oat){
+
         if(oat>this.PHEVMaxOAT){
             setPHEVMaxOAT(oat);
         }
@@ -161,8 +180,8 @@ private double ICECurrentSpeed;
         }
         setPHEVAvgOAT(PHEVCurrentOAT/PHEVCount);
     }
-    public void checkHEVOAT(double oat){
-        HEVCount++;
+    private void checkHEVOAT(double oat){
+
         if(oat>this.HEVMaxOAT){
             setHEVMaxOAT(oat);
         }
@@ -171,8 +190,7 @@ private double ICECurrentSpeed;
         }
         setHEVAvgOAT(HEVCurrentOAT/HEVCount);
     }
-    public void checkICEOAT(double oat){
-        ICECount++;
+    private void checkICEOAT(double oat){
         if(oat>this.ICEMaxOAT){
             setICEMaxOAT(oat);
         }
@@ -402,5 +420,50 @@ private double ICECurrentSpeed;
 
     private void setICEAvgOAT(double ICEAvgOAT) {
         this.ICEAvgOAT = ICEAvgOAT;
+    }
+
+    @Override
+    public String toString() {
+        return "VehicleTypesStats{" +
+                "\nPHEVCurrentSpeed=" + PHEVCurrentSpeed +
+                "\n, PHEVMaxSpeed=" + PHEVMaxSpeed +
+                "\n, PHEVMinSpeed=" + PHEVMinSpeed +
+                "\n, PHEVAvgSpeed=" + PHEVAvgSpeed +
+                "\n, PHEVCurrentLoad=" + PHEVCurrentLoad +
+                "\n, PHEVMaxLoad=" + PHEVMaxLoad +
+                "\n, PHEVMinLoad=" + PHEVMinLoad +
+                "\n, PHEVAvgLoad=" + PHEVAvgLoad +
+                "\n, PHEVCurrentOAT=" + PHEVCurrentOAT +
+                "\n, PHEVMaxOAT=" + PHEVMaxOAT +
+                "\n, PHEVMinOAT=" + PHEVMinOAT +
+                "\n, PHEVAvgOAT=" + PHEVAvgOAT +
+                "\n, PHEVCount=" + PHEVCount +
+                "\n, HEVCurrentSpeed=" + HEVCurrentSpeed +
+                "\n, HEVMaxSpeed=" + HEVMaxSpeed +
+                "\n, HEVMinSpeed=" + HEVMinSpeed +
+                "\n, HEVAvgSpeed=" + HEVAvgSpeed +
+                "\n, HEVCurrentLoad=" + HEVCurrentLoad +
+                "\n, HEVMaxLoad=" + HEVMaxLoad +
+                "\n, HEVMinLoad=" + HEVMinLoad +
+                "\n, HEVAvgLoad=" + HEVAvgLoad +
+                "\n, HEVCurrentOAT=" + HEVCurrentOAT +
+                "\n, HEVMaxOAT=" + HEVMaxOAT +
+                "\n, HEVMinOAT=" + HEVMinOAT +
+                "\n, HEVAvgOAT=" + HEVAvgOAT +
+                "\n, HEVCount=" + HEVCount +
+                "\n, ICECurrentSpeed=" + ICECurrentSpeed +
+                "\n, ICEMaxSpeed=" + ICEMaxSpeed +
+                "\n, ICEMinSpeed=" + ICEMinSpeed +
+                "\n, ICEAvgSpeed=" + ICEAvgSpeed +
+                "\n, ICECurrentLoad=" + ICECurrentLoad +
+                "\n, ICEMaxLoad=" + ICEMaxLoad +
+                "\n, ICEMinLoad=" + ICEMinLoad +
+                "\n, ICEAvgLoad=" + ICEAvgLoad +
+                "\n, ICECurrentOAT=" + ICECurrentOAT +
+                "\n, ICEMaxOAT=" + ICEMaxOAT +
+                "\n, ICEMinOAT=" + ICEMinOAT +
+                "\n, ICEAvgOAT=" + ICEAvgOAT +
+                "\n, ICECount=" + ICECount +
+                '}';
     }
 }

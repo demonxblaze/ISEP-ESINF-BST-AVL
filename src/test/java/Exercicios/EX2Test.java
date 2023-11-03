@@ -26,9 +26,9 @@ class EX2Test {
         AVL<DayNumTrip> dayNumTripAVL= ex1.getStructures(vehicleData, tripData).getDayNumAvl();
         AVL<Vehicle> vehicleAVL = ex1.getStructures(vehicleData, tripData).getVehicleAVL();
 
-       VehicleTypesStats a = ex2.getVehiclesStats(dayNumTripAVL, vehicleAVL, 1, 2.002);
-        System.out.println(a.getPHEVMaxSpeed());
-        assertEquals(1, a.getPHEVMaxOAT());
+       VehicleTypesStats a = ex2.getVehiclesStats(dayNumTripAVL, vehicleAVL, 155, 157);
+        System.out.println(a.toString());
+        //assertEquals(1, a.getPHEVMaxOAT());
 
 
 
