@@ -21,17 +21,28 @@ public class EX1 {
        AVL<TripSummary> tripSummaryAVL = getTripsAVL(tripsData);
        AVL<DayNumTrip> dayNumAvl = getDayNumAVL(vehiclesData,tripsData);
        Map<String, KDTree<Integer>> forKd = tripsForKd( tripsData);
-       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl, forKd);
+        AVL<Vehicle> vehicleAVL = getVehicleAVL(vehiclesData);
+       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl, forKd,vehicleAVL );
+
+
+
 
     }
-    private AVL<DayNumTrip> getDayNumAVL(List<String[]> vehiclesData,List<String[]> tripsData) {
-        List<Vehicle> vehicles = getVehicleList(vehiclesData);
-        List<Trip> trips = getTripsList(tripsData);
-        AVL<DayNumTrip> dayNumAvl = new AVL<>();
-         //My structure : AVL tree of DayNumTrip. Each DayNumTrip has a AVL tree of trips that have the same dayNumvalue in their tripdata
+    private AVL<DayNumTrip> getDayNumAVL(List<String[]> vehiclesData, List<String[]> tripsData) {
+        List<Trip> trips = getTripsList(tripsData); // get trips list
+        AVL<DayNumTrip> dayNumAvl = new AVL<>(); // create avl
 
-        
-        return null;
+        for (Trip t : trips) {
+            double dayNum = t.getDayNum();
+            DayNumTrip dayNumTrip = dayNumAvl.findElement(new DayNumTrip(dayNum,new AVL<>())); // find dayNumTrip in avl
+            if (dayNumTrip == null) { // if not found
+                dayNumTrip = new DayNumTrip(dayNum, new AVL<>()); // create new dayNumTrip
+                dayNumAvl.insert(dayNumTrip); // insert in avl
+            }
+            dayNumTrip.getTrips().insert(t);
+        }
+
+        return dayNumAvl;
     }
     private AVL<VehicleTripsDistance> getVehicleTripsDistanceAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
@@ -128,7 +139,7 @@ public class EX1 {
 
 
     private List<Trip> getTripsList(List<String[]> tripsData) {
-        
+
         List<Trip> trips = new ArrayList<>();
         AVL<TripData> tempTripAVL = new AVL<>();
         int tempID = 0;
@@ -159,6 +170,19 @@ public class EX1 {
         }
 
         return trips;
+    }
+    private AVL<Vehicle> getVehicleAVL(List<String[]> vehiclesData) {
+
+        AVL<Vehicle> vehicles = new AVL<>();
+
+        for (String[] line : vehiclesData) {
+            if (line[0].equals("NO DATA")) line[0] = "0";
+            if (line[6].equals("NO DATA")) line[6] = "0";
+            Vehicle vehicle = new Vehicle(Integer.parseInt(line[0]), line[1], line[2], line[3], line[4], line[5], Integer.parseInt(line[6]));
+            vehicles.insert(vehicle);
+        }
+
+        return vehicles;
     }
 
     public Vehicle searchByVehID(AVL<VehicleTrips> vehicleTripsAVL, int vehID){

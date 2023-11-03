@@ -24,7 +24,9 @@ public class Trip implements Comparable<Trip> {
     public Trip(int tripID) {
         this.tripID = tripID;
     }
-
+    public double getDayNum() {
+        return dayNum;
+    }
     public int getVehid() {
         return vehID;
     }

@@ -1,7 +1,5 @@
 package Domain;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import Trees.AVL;
 
@@ -10,14 +8,25 @@ public class DayNumTrip implements Comparable<DayNumTrip> {
     private AVL<Trip> listOfTrips;
     double dayNumValue;
 
-    public DayNumTrip(AVL<Trip> tripsAvl , double dayNumValue) {
+    public DayNumTrip(double dayNumValue ,AVL<Trip> tripsAvl ) {
         this.listOfTrips = tripsAvl;
         this.dayNumValue = dayNumValue;
     }
 
     @Override
     public int compareTo(DayNumTrip o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+        return Double.compare(this.dayNumValue, o.dayNumValue);
+    }
+
+    public AVL<Trip> getTrips() {
+        return listOfTrips;
+    }
+
+    @Override
+    public String toString() {
+        return "DayNumTrip{" +
+                "listOfTrips=" + listOfTrips.toString() +
+                ", dayNumValue=" + dayNumValue +
+                '}';
     }
 }
