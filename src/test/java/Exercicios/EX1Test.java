@@ -130,7 +130,7 @@ class EX1Test {
 
         Structures structures = ex1.getStructures(vehicleData, tripData);
 
-        PairData result = ex1.searchByTripID(structures.getVehicleTripsAVL(), new Trip(1, 1, 1, new AVL<TripData>()));
+        PairData result = ex1.searchByTripID(structures.getTripAVL(),structures.getVehicleTripsAVL(), new Trip(1, 1, 1, new AVL<TripData>()));
         PairData expected = new PairData<>(new Trip(1), new Vehicle(1));
 
         assertEquals(expected, result);
@@ -148,7 +148,7 @@ class EX1Test {
 
         //Não existe nenhuma viagem com o ID 999
 
-        assertNull(ex1.searchByTripID(structures.getVehicleTripsAVL(), new Trip(999)));
+        assertNull(ex1.searchByTripID(structures.getTripAVL() ,structures.getVehicleTripsAVL(), new Trip(999)));
     }
 
 }

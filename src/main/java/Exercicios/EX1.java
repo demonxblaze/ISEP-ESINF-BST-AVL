@@ -22,11 +22,20 @@ public class EX1 {
        AVL<DayNumTrip> dayNumAvl = getDayNumAVL(vehiclesData,tripsData);
        Map<String, KDTree<Integer>> forKd = tripsForKd( tripsData);
         AVL<Vehicle> vehicleAVL = getVehicleAVL(vehiclesData);
-       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl, forKd,vehicleAVL );
+        AVL<Trip> tripAVL = getTripAVL(tripsData);
+       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl, forKd,vehicleAVL, tripAVL);
 
+    }
 
+    private AVL<Trip> getTripAVL(List<String[]> tripsData) {
+        List<Trip> trips = getTripsList(tripsData);
+        AVL<Trip> tripAVL = new AVL<>();
 
+        for (Trip t : trips) {
+            tripAVL.insert(t);
+        }
 
+        return tripAVL;
     }
     private AVL<DayNumTrip> getDayNumAVL(List<String[]> vehiclesData, List<String[]> tripsData) {
         List<Trip> trips = getTripsList(tripsData); // get trips list
@@ -173,12 +182,10 @@ public class EX1 {
     private AVL<Vehicle> getVehicleAVL(List<String[]> vehiclesData) {
 
         AVL<Vehicle> vehicles = new AVL<>();
+        List<Vehicle> vehiclesList = getVehicleList(vehiclesData);
 
-        for (String[] line : vehiclesData) {
-            if (line[0].equals("NO DATA")) line[0] = "0";
-            if (line[6].equals("NO DATA")) line[6] = "0";
-            Vehicle vehicle = new Vehicle(Integer.parseInt(line[0]), line[1], line[2], line[3], line[4], line[5], Integer.parseInt(line[6]));
-            vehicles.insert(vehicle);
+        for (Vehicle v : vehiclesList) {
+            vehicles.insert(v);
         }
 
         return vehicles;
@@ -190,9 +197,9 @@ public class EX1 {
         return temp;
     }
 
-    public PairData<Trip, Vehicle> searchByTripID(AVL<VehicleTrips> vehicleTripsAVL, Trip trip){
-        VehicleTrips temp = vehicleTripsAVL.findElement(new VehicleTrips(new Vehicle(trip.getVehid())));
+    public PairData<Trip, Vehicle> searchByTripID(AVL<Trip> tripAVL,AVL<VehicleTrips> vehicleTripsAVL, Trip trip){
+        Trip temp = tripAVL.findElement(trip);
         if(temp == null) return null;
-        return new PairData<>(temp.getTrips().findElement(trip), temp.getVehicle());
+        return new PairData<>(temp, searchByVehID(vehicleTripsAVL, temp.getVehid()).getVehicle());
     }
 }
