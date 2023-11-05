@@ -1,0 +1,9 @@
+DayNum,VehId,Trip,Timestamp(ms),Latitude[deg],Longitude[deg],Vehicle Speed[km/h],MAF[g/sec],Engine RPM[RPM],Absolute Load[%],OAT[DegC],Fuel Rate[L/hr],Air Conditioning Power[kW],Air Conditioning Power[Watts],Heater Power[Watts],HV Battery Current[A],HV Battery SOC[%],HV Battery Voltage[V],Short Term Fuel Trim Bank 1[%],Short Term Fuel Trim Bank 2[%],Long Term Fuel Trim Bank 1[%],Long Term Fuel Trim Bank 2[%]
+155.5329374,10,2213,0,42,-83,55.12999725,NaN,NaN,NaN,-2.5,NaN,NaN,1050,1250,-13.5,100,385.5,NaN,NaN,NaN,NaN
+155.5329374,10,2213,100,43,-82,55.12999725,NaN,NaN,NaN,-2.5,NaN,NaN,1050,1250,-13.5,100,385.5,NaN,NaN,NaN,NaN
+155.5329374,10,2213,200,44,-81,55.12999725,NaN,NaN,NaN,-2.5,NaN,NaN,1050,1250,-13.5,100,385.5,NaN,NaN,NaN,NaN
+155.5329374,10,2213,300,45,-80,55.12999725,NaN,NaN,NaN,-2.5,NaN,NaN,1050,1250,-13.5,100,385.5,NaN,NaN,NaN,NaN
+155.5329375,11,3000,0,70,-80,55.12999725,NaN,NaN,NaN,-2.5,NaN,NaN,1050,1250,-13.5,100,385.5,NaN,NaN,NaN,NaN
+155.5329375,11,3000,100,75,-80,55.12999725,NaN,NaN,NaN,-2.5,NaN,NaN,1050,1250,-13.5,100,385.5,NaN,NaN,NaN,NaN
+155.5329375,11,3000,200,80,-80,55.12999725,NaN,NaN,NaN,-2.5,NaN,NaN,1050,1250,-13.5,100,385.5,NaN,NaN,NaN,NaN
+155.5329375,11,3000,300,90,-80,55.12999725,NaN,NaN,NaN,-2.5,NaN,NaN,1050,1250,-13.5,100,385.5,NaN,NaN,NaN,NaN

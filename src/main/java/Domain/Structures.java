@@ -12,16 +12,22 @@ public class Structures {
     AVL<DayNumTrip> dayNumAvl;
     AVL<Vehicle> vehicleAVL;
     Map<String, KDTree<Integer>> forKd;
+    KDTree <Trip> beginTripsTree;
+    KDTree <Trip> endTripsTree;
     AVL<Trip> tripAVL;
 
 
-    public Structures(AVL<VehicleTrips> vehicleTripsAVL, AVL<VehicleTripsDistance> vehicleTripsDistanceAVL, AVL<TripSummary> tripSummaryAVL,AVL<DayNumTrip> dayNumAvl, Map<String, KDTree<Integer>> forKd, AVL<Vehicle> vehicleAVL, AVL<Trip> tripAVL){
+
+    public Structures(AVL<VehicleTrips> vehicleTripsAVL, AVL<VehicleTripsDistance> vehicleTripsDistanceAVL, AVL<TripSummary> tripSummaryAVL,AVL<DayNumTrip> dayNumAvl, Map<String, KDTree<Integer>> forKd, AVL<Vehicle> vehicleAVL, KDTree<Trip> beginTripsTree, KDTree<Trip> endTripsTree, AVL<Trip> tripAVL) {
         this.vehicleTripsAVL = vehicleTripsAVL;
         this.vehicleTripsDistanceAVL = vehicleTripsDistanceAVL;
         this.tripSummaryAVL = tripSummaryAVL;
         this.dayNumAvl = dayNumAvl;
         this.vehicleAVL = vehicleAVL;
         this.forKd = forKd;
+        this.beginTripsTree = beginTripsTree;
+        this.endTripsTree = endTripsTree;
+
         this.tripAVL = tripAVL;
     }
 
@@ -80,5 +86,13 @@ public class Structures {
 
     public void setTripSummaryAVL(AVL<TripSummary> tripSummaryAVL) {
         this.tripSummaryAVL = tripSummaryAVL;
+    }
+
+    public KDTree<Trip> getBeginTripsTree() {
+        return beginTripsTree;
+    }
+
+    public KDTree<Trip> getEndTripsTree() {
+        return endTripsTree;
     }
 }

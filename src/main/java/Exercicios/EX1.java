@@ -19,11 +19,13 @@ public class EX1 {
        AVL<VehicleTrips> vehicleTripsAVL = getVehicleTripsAVL(vehiclesData, tripsData);
        AVL<VehicleTripsDistance> vehicleTripsDistanceAVL = getVehicleTripsDistanceAVL(vehiclesData, tripsData);
        AVL<TripSummary> tripSummaryAVL = getTripsAVL(tripsData);
-       AVL<DayNumTrip> dayNumAvl = getDayNumAVL(vehiclesData,tripsData);
+       AVL<DayNumTrip> dayNumAvl = getDayNumAVL(tripsData);
        Map<String, KDTree<Integer>> forKd = tripsForKd( tripsData);
         AVL<Vehicle> vehicleAVL = getVehicleAVL(vehiclesData);
         AVL<Trip> tripAVL = getTripAVL(tripsData);
-       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl, forKd,vehicleAVL, tripAVL);
+        KDTree<Trip> beginTripsTree = getTripsBegining(tripsData);
+        KDTree<Trip> endTripsTree = getTripsEnd(tripsData);
+       return new Structures(vehicleTripsAVL, vehicleTripsDistanceAVL, tripSummaryAVL, dayNumAvl, forKd,vehicleAVL, beginTripsTree, endTripsTree, tripAVL);
 
     }
 
@@ -37,7 +39,22 @@ public class EX1 {
 
         return tripAVL;
     }
-    private AVL<DayNumTrip> getDayNumAVL(List<String[]> vehiclesData, List<String[]> tripsData) {
+    private KDTree<Trip> getTripsBegining(List<String[]> tripsData){
+        KDTree<Trip> beginTripsTree = new KDTree<>();
+        for (Trip t: getTripsList(tripsData)) {
+            beginTripsTree.insertInKD(t, t.getTripData().findMin().getLatitude(), t.getTripData().findMin().getLongitude());
+        }
+        return beginTripsTree;
+    }
+    private KDTree<Trip> getTripsEnd(List<String[]> tripsData){
+        KDTree<Trip> endTripsTree = new KDTree<>();
+        for (Trip t: getTripsList(tripsData)) {
+            endTripsTree.insertInKD(t, t.getTripData().findMax().getLatitude(), t.getTripData().findMax().getLongitude());
+        }
+
+        return endTripsTree;
+    }
+    private AVL<DayNumTrip> getDayNumAVL(List<String[]> tripsData) {
         List<Trip> trips = getTripsList(tripsData); // get trips list
         AVL<DayNumTrip> dayNumAvl = new AVL<>(); // create avl
 
@@ -88,6 +105,7 @@ public class EX1 {
         return vehicleTripsDistanceAVL;
 
     }
+
     private AVL<VehicleTrips> getVehicleTripsAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
 

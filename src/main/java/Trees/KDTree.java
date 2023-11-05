@@ -3,7 +3,9 @@ package Trees;
 import com.sun.source.tree.IfTree;
 
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class KDTree<E  extends Comparable<E>> extends BST<E> implements KDTreeNodeInterface{
 
@@ -120,8 +122,7 @@ public class KDTree<E  extends Comparable<E>> extends BST<E> implements KDTreeNo
         if (result == null) return null;
         return result.getInfo();
     }
-    private KDNode<E> findNearestNeighbour(KDNode<E> node, double x, double y,
-                                  KDNode<E> closestNode, boolean divX) {
+    private KDNode<E> findNearestNeighbour(KDNode<E> node, double x, double y, KDNode<E> closestNode, boolean divX) {
         if (node == null)
             return null;
 
@@ -144,5 +145,84 @@ public class KDTree<E  extends Comparable<E>> extends BST<E> implements KDTreeNo
 
         return closestNode;
     }
+    public List<E> findInRange(double minX, double maxX, double minY, double maxY){
+        List<E> result = new ArrayList<>();
+        findInRange(root, minX, maxX, minY, maxY,result,true);
+
+        return result;
+    }
+
+    private void findInRange (KDNode<E> node,double minX,double maxX, double minY, double maxY, List<E> result, boolean divX){
+        if (node == null) return;
+        if (node.coords.x >= minX && node.coords.x <= maxX && node.coords.y >= minY && node.coords.y <= maxY){
+            result.add(node.getInfo());
+        }
+        if (divX){
+            if (node.coords.x >= minX){
+                findInRange(node.left, minX, maxX, minY, maxY, result, !divX);
+            }
+            if (node.coords.x <= maxX){
+                findInRange(node.right, minX, maxX, minY, maxY, result, !divX);
+            }
+        }else{
+            if (node.coords.y >= minY){
+                findInRange(node.left, minX, maxX, minY, maxY, result, !divX);
+            }
+            if (node.coords.y <= maxY){
+                findInRange(node.right, minX, maxX, minY, maxY, result, !divX);
+            }
+        }
+    }
+
+    /*
+    * public List<E> rangeSearch(double minLatitude, double maxLatitude, double minLongitude, double maxLongitude) {
+        List<E> pointsInRange = new ArrayList<>();
+        rangeSearch(root, minLatitude, maxLatitude, minLongitude, maxLongitude, pointsInRange, true);
+        return pointsInRange;
+    }
+
+    private void rangeSearch(KDNode<E> node, double minLat, double maxLat, double minLon, double maxLon, List<E> pointsInRange, boolean divX) {
+        if (minLat > maxLat) {
+            double temp = minLat;
+            minLat = maxLat;
+            maxLat = temp;
+        }
+        else if (minLon > maxLon) {
+            double temp = minLon;
+            minLon = maxLon;
+            maxLon = temp;
+        }
+
+        if (node == null) {
+            return;
+        }
+
+        double nodeLat = node.coords.getY();
+        double nodeLon = node.coords.getX();
+
+        if (nodeLat >= minLat && nodeLat <= maxLat && nodeLon >= minLon && nodeLon <= maxLon) {
+            pointsInRange.add(node.getInfo());
+        }
+
+
+        if (divX) {
+            // Check the X-axis (longitude) to decide which sub-tree to explore
+            if (nodeLon >= minLon) {
+                rangeSearch(node.getLeft(), minLat, maxLat, minLon, maxLon, pointsInRange, !divX);
+            }
+            if (nodeLon <= maxLon) {
+                rangeSearch(node.getRight(), minLat, maxLat, minLon, maxLon, pointsInRange, !divX);
+            }
+        } else {
+            // Check the Y-axis (latitude) to decide which sub-tree to explore
+            if (nodeLat >= minLat) {
+                rangeSearch(node.getLeft(), minLat, maxLat, minLon, maxLon, pointsInRange, !divX);
+            }
+            if (nodeLat <= maxLat) {
+                rangeSearch(node.getRight(), minLat, maxLat, minLon, maxLon, pointsInRange, !divX);
+            }
+        }
+
+    }*/
 }
 
