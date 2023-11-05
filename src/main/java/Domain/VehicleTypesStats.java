@@ -1,7 +1,13 @@
 package Domain;
 
+import java.util.Objects;
+
 public class VehicleTypesStats {
      private double PHEVCurrentSpeed;
+     private double PHEVSpeedCount, HEVSpeedCount,ICESpeedCount;
+     private  double PHEVLoadCount, HEVLoadCount,ICELoadCount;
+     private double PHEVOATCount, HEVOATCount,ICEOATCount;
+
     private double PHEVMaxSpeed;
     private double PHEVMinSpeed;
     private double PHEVAvgSpeed;
@@ -13,7 +19,7 @@ public class VehicleTypesStats {
     private double PHEVMaxOAT;
     private double PHEVMinOAT;
     private double PHEVAvgOAT;
-    private int PHEVCount;
+
 
     private double HEVCurrentSpeed;
     private double HEVMaxSpeed;
@@ -27,7 +33,7 @@ public class VehicleTypesStats {
     private double HEVMaxOAT;
     private double HEVMinOAT;
     private double HEVAvgOAT;
-    private int HEVCount;
+
 
 private double ICECurrentSpeed;
     private double ICEMaxSpeed;
@@ -41,7 +47,7 @@ private double ICECurrentSpeed;
     private double ICEMaxOAT;
     private double ICEMinOAT;
     private double ICEAvgOAT;
-    private int ICECount;
+
 
 
     public VehicleTypesStats(){
@@ -72,9 +78,6 @@ private double ICECurrentSpeed;
         this.ICEMaxOAT = 0;
         this.ICEMinOAT = 0;
         this.ICEAvgOAT = 0;
-        this.PHEVCount=0;
-        this.HEVCount=0;
-        this.ICECount=0;
         this.HEVCurrentLoad=0;
         this.HEVCurrentOAT=0;
         this.HEVCurrentSpeed=0;
@@ -84,32 +87,43 @@ private double ICECurrentSpeed;
         this.ICECurrentLoad=0;
         this.ICECurrentOAT=0;
         this.ICECurrentSpeed=0;
+        this.PHEVSpeedCount=0;
+        this.HEVSpeedCount=0;
+        this.ICESpeedCount=0;
+        this.PHEVLoadCount=0;
+        this.HEVLoadCount=0;
+        this.ICELoadCount=0;
+        this.PHEVOATCount=0;
+        this.HEVOATCount=0;
+        this.ICEOATCount=0;
+
 
     }
     public void checkPHEV(double speed, double load, double oat){
-        PHEVCount++;
-        checkPHEVSpeed(speed);
-        checkPHEVLoad(load);
-        checkPHEVOAT(oat);
+        //in my if i want to check if speed is NaN:
+        //
+
+        if (!Double.isNaN(speed)) checkPHEVSpeed(speed);
+        if (!Double.isNaN(load)) checkPHEVLoad(load);
+        if (!Double.isNaN(oat)) checkPHEVOAT(oat);
 
     }
     public void checkHEV(double speed, double load, double oat){
-        HEVCount++;
-        checkHEVSpeed(speed);
-        checkHEVLoad(load);
-        checkHEVOAT(oat);
+
+       if (!Double.isNaN(speed)) checkHEVSpeed(speed);
+        if (!Double.isNaN(load))  checkHEVLoad(load);
+        if (!Double.isNaN(oat)) checkHEVOAT(oat);
     }
     public void checkICE(double speed, double load, double oat){
-        ICECount++;
-        checkICESpeed(speed);
-        checkICELoad(load);
-        checkICEOAT(oat);
+
+        if (!Double.isNaN(speed))  checkICESpeed(speed);
+        if (!Double.isNaN(load)) checkICELoad(load);
+        if (!Double.isNaN(oat)) checkICEOAT(oat);
     }
 
     private void checkPHEVSpeed(double speed){
+        PHEVSpeedCount++;
         PHEVCurrentSpeed+=speed;
-
-       
         if(speed>this.PHEVMaxSpeed){
             setPHEVMaxSpeed(speed);
         }
@@ -117,87 +131,97 @@ private double ICECurrentSpeed;
             setPHEVMinSpeed(speed);
             
         }
-        setPHEVAvgSpeed(PHEVCurrentSpeed/PHEVCount);
+        setPHEVAvgSpeed(PHEVCurrentSpeed/PHEVSpeedCount);
 
     }
     private void checkHEVSpeed(double speed){
-
+       HEVSpeedCount++;
+         HEVCurrentSpeed+=speed;
         if(speed>this.HEVMaxSpeed){
             setHEVMaxSpeed(speed);
         }
         if(speed<this.HEVMinSpeed){
             setHEVMinSpeed(speed);
         }
-        setHEVAvgSpeed(HEVCurrentSpeed/HEVCount);
+        setHEVAvgSpeed(HEVCurrentSpeed/HEVSpeedCount);
     }
     private void checkICESpeed(double speed){
-
+       ICESpeedCount++;
+        ICECurrentSpeed+=speed;
         if(speed>this.ICEMaxSpeed){
             setICEMaxSpeed(speed);
         }
         if(speed<this.ICEMinSpeed){
             setICEMinSpeed(speed);
         }
-        setICEAvgSpeed(ICECurrentSpeed/ICECount);
+        setICEAvgSpeed(ICECurrentSpeed/ ICESpeedCount);
     }
     private void checkPHEVLoad(double load){
-
+        PHEVLoadCount++;
+        PHEVCurrentLoad+=load;
         if(load>this.PHEVMaxLoad){
             setPHEVMaxLoad(load);
         }
         if(load<this.PHEVMinLoad){
             setPHEVMinLoad(load);
         }
-        setPHEVAvgLoad(PHEVCurrentLoad/PHEVCount);
+        setPHEVAvgLoad(PHEVCurrentLoad/PHEVLoadCount);
     }
     private void checkHEVLoad(double load){
-
+        HEVLoadCount++;
+        HEVCurrentLoad+=load;
         if(load>this.HEVMaxLoad){
             setHEVMaxLoad(load);
         }
         if(load<this.HEVMinLoad){
             setHEVMinLoad(load);
         }
-        setHEVAvgLoad(HEVCurrentLoad/HEVCount);
+        setHEVAvgLoad(HEVCurrentLoad/HEVLoadCount);
     }
     public void checkICELoad(double load){
-
+        ICELoadCount++;
+        ICECurrentLoad+=load;
+        
         if(load>this.ICEMaxLoad){
             setICEMaxLoad(load);
         }
         if(load<this.ICEMinLoad){
             setICEMinLoad(load);
         }
-        setICEAvgLoad(ICECurrentLoad/ICECount);
+        setICEAvgLoad(ICECurrentLoad/ICELoadCount);
     }   
     private void checkPHEVOAT(double oat){
-
+        PHEVOATCount++;
+        PHEVCurrentOAT+=oat;
         if(oat>this.PHEVMaxOAT){
             setPHEVMaxOAT(oat);
         }
         if(oat<this.PHEVMinOAT){
             setPHEVMinOAT(oat);
         }
-        setPHEVAvgOAT(PHEVCurrentOAT/PHEVCount);
+        setPHEVAvgOAT(PHEVCurrentOAT/PHEVOATCount);
     }
     private void checkHEVOAT(double oat){
-
+        HEVOATCount++;
+        HEVCurrentOAT+=oat;
         if(oat>this.HEVMaxOAT){
             setHEVMaxOAT(oat);
         }
         if(oat<this.HEVMinOAT){
             setHEVMinOAT(oat);
         }
-        setHEVAvgOAT(HEVCurrentOAT/HEVCount);
+        setHEVAvgOAT(HEVCurrentOAT/HEVOATCount);
     }
     private void checkICEOAT(double oat){
+        ICEOATCount++;
+        ICECurrentOAT+=oat;
         if(oat>this.ICEMaxOAT){
             setICEMaxOAT(oat);
         }
         if(oat<this.ICEMinOAT){
             setICEMinOAT(oat);
         }
-        setICEAvgOAT(ICECurrentOAT/ICECount);
+        setICEAvgOAT(ICECurrentOAT/ICEOATCount);
     }
 
    
@@ -206,7 +230,7 @@ private double ICECurrentSpeed;
         return PHEVMaxSpeed;
     }
 
-    private void setPHEVMaxSpeed(double PHEVMaxSpeed) {
+    public void setPHEVMaxSpeed(double PHEVMaxSpeed) {
         this.PHEVMaxSpeed = PHEVMaxSpeed;
         
         
@@ -217,7 +241,7 @@ private double ICECurrentSpeed;
 
     }
 
-    private void setPHEVMinSpeed(double PHEVMinSpeed) {
+    public void setPHEVMinSpeed(double PHEVMinSpeed) {
             this.PHEVMinSpeed = PHEVMinSpeed;     
     }
 
@@ -225,7 +249,7 @@ private double ICECurrentSpeed;
         return PHEVAvgSpeed;
     }
 
-    private void setPHEVAvgSpeed(double PHEVAvgSpeed) {
+    public void setPHEVAvgSpeed(double PHEVAvgSpeed) {
         this.PHEVAvgSpeed = PHEVAvgSpeed;
         
     }
@@ -234,7 +258,7 @@ private double ICECurrentSpeed;
         return PHEVMaxLoad;
     }
 
-    private void setPHEVMaxLoad(double PHEVMaxLoad) {
+    public void setPHEVMaxLoad(double PHEVMaxLoad) {
         this.PHEVMaxLoad = PHEVMaxLoad;
     }
 
@@ -242,7 +266,7 @@ private double ICECurrentSpeed;
         return PHEVMinLoad;
     }
 
-    private void setPHEVMinLoad(double PHEVMinLoad) {
+    public void setPHEVMinLoad(double PHEVMinLoad) {
         this.PHEVMinLoad = PHEVMinLoad;
     }
 
@@ -250,7 +274,7 @@ private double ICECurrentSpeed;
         return PHEVAvgLoad;
     }
 
-    private void setPHEVAvgLoad(double PHEVAvgLoad) {
+    public void setPHEVAvgLoad(double PHEVAvgLoad) {
         this.PHEVAvgLoad = PHEVAvgLoad;
     }
 
@@ -258,7 +282,7 @@ private double ICECurrentSpeed;
         return PHEVMaxOAT;
     }
 
-    private void setPHEVMaxOAT(double PHEVMaxOAT) {
+    public void setPHEVMaxOAT(double PHEVMaxOAT) {
         this.PHEVMaxOAT = PHEVMaxOAT;
     }
 
@@ -266,7 +290,7 @@ private double ICECurrentSpeed;
         return PHEVMinOAT;
     }
 
-    private void setPHEVMinOAT(double PHEVMinOAT) {
+    public void setPHEVMinOAT(double PHEVMinOAT) {
         this.PHEVMinOAT = PHEVMinOAT;
     }
 
@@ -274,7 +298,7 @@ private double ICECurrentSpeed;
         return PHEVAvgOAT;
     }
 
-    private void setPHEVAvgOAT(double PHEVAvgOAT) {
+    public void setPHEVAvgOAT(double PHEVAvgOAT) {
         this.PHEVAvgOAT = PHEVAvgOAT;
     }
 
@@ -282,7 +306,7 @@ private double ICECurrentSpeed;
         return HEVMaxSpeed;
     }
 
-    private void setHEVMaxSpeed(double HEVMaxSpeed) {
+    public void setHEVMaxSpeed(double HEVMaxSpeed) {
         this.HEVMaxSpeed = HEVMaxSpeed;
     }
 
@@ -290,7 +314,7 @@ private double ICECurrentSpeed;
         return HEVMinSpeed;
     }
 
-    private void setHEVMinSpeed(double HEVMinSpeed) {
+    public void setHEVMinSpeed(double HEVMinSpeed) {
         this.HEVMinSpeed = HEVMinSpeed;
     }
 
@@ -298,7 +322,7 @@ private double ICECurrentSpeed;
         return HEVAvgSpeed;
     }
 
-    private void setHEVAvgSpeed(double HEVAvgSpeed) {
+    public void setHEVAvgSpeed(double HEVAvgSpeed) {
         this.HEVAvgSpeed = HEVAvgSpeed;
     }
 
@@ -306,7 +330,7 @@ private double ICECurrentSpeed;
         return HEVMaxLoad;
     }
 
-    private void setHEVMaxLoad(double HEVMaxLoad) {
+    public void setHEVMaxLoad(double HEVMaxLoad) {
         this.HEVMaxLoad = HEVMaxLoad;
     }
 
@@ -314,7 +338,7 @@ private double ICECurrentSpeed;
         return HEVMinLoad;
     }
 
-    private void setHEVMinLoad(double HEVMinLoad) {
+    public void setHEVMinLoad(double HEVMinLoad) {
         this.HEVMinLoad = HEVMinLoad;
     }
 
@@ -322,7 +346,7 @@ private double ICECurrentSpeed;
         return HEVAvgLoad;
     }
 
-    private void setHEVAvgLoad(double HEVAvgLoad) {
+    public void setHEVAvgLoad(double HEVAvgLoad) {
         this.HEVAvgLoad = HEVAvgLoad;
     }
 
@@ -330,7 +354,7 @@ private double ICECurrentSpeed;
         return HEVMaxOAT;
     }
 
-    private void setHEVMaxOAT(double HEVMaxOAT) {
+    public void setHEVMaxOAT(double HEVMaxOAT) {
         this.HEVMaxOAT = HEVMaxOAT;
     }
 
@@ -338,7 +362,7 @@ private double ICECurrentSpeed;
         return HEVMinOAT;
     }
 
-    private void setHEVMinOAT(double HEVMinOAT) {
+    public void setHEVMinOAT(double HEVMinOAT) {
         this.HEVMinOAT = HEVMinOAT;
     }
 
@@ -346,7 +370,7 @@ private double ICECurrentSpeed;
         return HEVAvgOAT;
     }
 
-    private void setHEVAvgOAT(double HEVAvgOAT) {
+    public void setHEVAvgOAT(double HEVAvgOAT) {
         this.HEVAvgOAT = HEVAvgOAT;
     }
 
@@ -354,7 +378,7 @@ private double ICECurrentSpeed;
         return ICEMaxSpeed;
     }
 
-    private void setICEMaxSpeed(double ICEMaxSpeed) {
+    public void setICEMaxSpeed(double ICEMaxSpeed) {
         this.ICEMaxSpeed = ICEMaxSpeed;
     }
 
@@ -362,7 +386,7 @@ private double ICECurrentSpeed;
         return ICEMinSpeed;
     }
 
-    private void setICEMinSpeed(double ICEMinSpeed) {
+    public void setICEMinSpeed(double ICEMinSpeed) {
         this.ICEMinSpeed = ICEMinSpeed;
     }
 
@@ -370,7 +394,7 @@ private double ICECurrentSpeed;
         return ICEAvgSpeed;
     }
 
-    private void setICEAvgSpeed(double ICEAvgSpeed) {
+    public void setICEAvgSpeed(double ICEAvgSpeed) {
         this.ICEAvgSpeed = ICEAvgSpeed;
     }
 
@@ -378,7 +402,7 @@ private double ICECurrentSpeed;
         return ICEMaxLoad;
     }
 
-    private void setICEMaxLoad(double ICEMaxLoad) {
+    public void setICEMaxLoad(double ICEMaxLoad) {
         this.ICEMaxLoad = ICEMaxLoad;
     }
 
@@ -386,7 +410,7 @@ private double ICECurrentSpeed;
         return ICEMinLoad;
     }
 
-    private void setICEMinLoad(double ICEMinLoad) {
+    public void setICEMinLoad(double ICEMinLoad) {
         this.ICEMinLoad = ICEMinLoad;
     }
 
@@ -394,7 +418,7 @@ private double ICECurrentSpeed;
         return ICEAvgLoad;
     }
 
-    private void setICEAvgLoad(double ICEAvgLoad) {
+    public void setICEAvgLoad(double ICEAvgLoad) {
         this.ICEAvgLoad = ICEAvgLoad;
     }
 
@@ -402,7 +426,7 @@ private double ICECurrentSpeed;
         return ICEMaxOAT;
     }
 
-    private void setICEMaxOAT(double ICEMaxOAT) {
+    public void setICEMaxOAT(double ICEMaxOAT) {
         this.ICEMaxOAT = ICEMaxOAT;
     }
 
@@ -410,7 +434,7 @@ private double ICECurrentSpeed;
         return ICEMinOAT;
     }
 
-    private void setICEMinOAT(double ICEMinOAT) {
+    public void setICEMinOAT(double ICEMinOAT) {
         this.ICEMinOAT = ICEMinOAT;
     }
 
@@ -418,7 +442,7 @@ private double ICECurrentSpeed;
         return ICEAvgOAT;
     }
 
-    private void setICEAvgOAT(double ICEAvgOAT) {
+    public void setICEAvgOAT(double ICEAvgOAT) {
         this.ICEAvgOAT = ICEAvgOAT;
     }
 
@@ -437,7 +461,6 @@ private double ICECurrentSpeed;
                 "\n, PHEVMaxOAT=" + PHEVMaxOAT +
                 "\n, PHEVMinOAT=" + PHEVMinOAT +
                 "\n, PHEVAvgOAT=" + PHEVAvgOAT +
-                "\n, PHEVCount=" + PHEVCount +
                 "\n, HEVCurrentSpeed=" + HEVCurrentSpeed +
                 "\n, HEVMaxSpeed=" + HEVMaxSpeed +
                 "\n, HEVMinSpeed=" + HEVMinSpeed +
@@ -450,7 +473,6 @@ private double ICECurrentSpeed;
                 "\n, HEVMaxOAT=" + HEVMaxOAT +
                 "\n, HEVMinOAT=" + HEVMinOAT +
                 "\n, HEVAvgOAT=" + HEVAvgOAT +
-                "\n, HEVCount=" + HEVCount +
                 "\n, ICECurrentSpeed=" + ICECurrentSpeed +
                 "\n, ICEMaxSpeed=" + ICEMaxSpeed +
                 "\n, ICEMinSpeed=" + ICEMinSpeed +
@@ -463,7 +485,95 @@ private double ICECurrentSpeed;
                 "\n, ICEMaxOAT=" + ICEMaxOAT +
                 "\n, ICEMinOAT=" + ICEMinOAT +
                 "\n, ICEAvgOAT=" + ICEAvgOAT +
-                "\n, ICECount=" + ICECount +
+                "\n, PHEVSpeedCount=" + PHEVSpeedCount +
+                "\n, HEVSpeedCount=" + HEVSpeedCount +
+                "\n, ICESpeedCount=" + ICESpeedCount +
+                "\n, PHEVLoadCount=" + PHEVLoadCount +
+                "\n, HEVLoadCount=" + HEVLoadCount +
+                "\n, ICELoadCount=" + ICELoadCount +
+                "\n, PHEVOATCount=" + PHEVOATCount +
+                "\n, HEVOATCount=" + HEVOATCount +
+                "\n, ICEOATCount=" + ICEOATCount +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VehicleTypesStats that = (VehicleTypesStats) o;
+        return Double.compare(PHEVSpeedCount, that.PHEVSpeedCount) == 0 && Double.compare(HEVSpeedCount, that.HEVSpeedCount) == 0 && Double.compare(ICESpeedCount, that.ICESpeedCount) == 0 && Double.compare(PHEVLoadCount, that.PHEVLoadCount) == 0 && Double.compare(HEVLoadCount, that.HEVLoadCount) == 0 && Double.compare(ICELoadCount, that.ICELoadCount) == 0 && Double.compare(PHEVOATCount, that.PHEVOATCount) == 0 && Double.compare(HEVOATCount, that.HEVOATCount) == 0 && Double.compare(ICEOATCount, that.ICEOATCount) == 0 && Double.compare(PHEVMaxSpeed, that.PHEVMaxSpeed) == 0 && Double.compare(PHEVMinSpeed, that.PHEVMinSpeed) == 0 && Double.compare(PHEVAvgSpeed, that.PHEVAvgSpeed) == 0 && Double.compare(PHEVMaxLoad, that.PHEVMaxLoad) == 0 && Double.compare(PHEVMinLoad, that.PHEVMinLoad) == 0 && Double.compare(PHEVAvgLoad, that.PHEVAvgLoad) == 0 && Double.compare(PHEVMaxOAT, that.PHEVMaxOAT) == 0 && Double.compare(PHEVMinOAT, that.PHEVMinOAT) == 0 && Double.compare(PHEVAvgOAT, that.PHEVAvgOAT) == 0 && Double.compare(HEVMaxSpeed, that.HEVMaxSpeed) == 0 && Double.compare(HEVMinSpeed, that.HEVMinSpeed) == 0 && Double.compare(HEVAvgSpeed, that.HEVAvgSpeed) == 0 && Double.compare(HEVMaxLoad, that.HEVMaxLoad) == 0 && Double.compare(HEVMinLoad, that.HEVMinLoad) == 0 && Double.compare(HEVAvgLoad, that.HEVAvgLoad) == 0 && Double.compare(HEVMaxOAT, that.HEVMaxOAT) == 0 && Double.compare(HEVMinOAT, that.HEVMinOAT) == 0 && Double.compare(HEVAvgOAT, that.HEVAvgOAT) == 0 && Double.compare(ICEMaxSpeed, that.ICEMaxSpeed) == 0 && Double.compare(ICEMinSpeed, that.ICEMinSpeed) == 0 && Double.compare(ICEAvgSpeed, that.ICEAvgSpeed) == 0 && Double.compare(ICEMaxLoad, that.ICEMaxLoad) == 0 && Double.compare(ICEMinLoad, that.ICEMinLoad) == 0 && Double.compare(ICEAvgLoad, that.ICEAvgLoad) == 0 && Double.compare(ICEMaxOAT, that.ICEMaxOAT) == 0 && Double.compare(ICEMinOAT, that.ICEMinOAT) == 0 && Double.compare(ICEAvgOAT, that.ICEAvgOAT) == 0;
+    }
+
+    public void setPHEVCurrentSpeed(double PHEVCurrentSpeed) {
+        this.PHEVCurrentSpeed = PHEVCurrentSpeed;
+    }
+
+    public void setPHEVSpeedCount(double PHEVSpeedCount) {
+        this.PHEVSpeedCount = PHEVSpeedCount;
+    }
+
+    public void setHEVSpeedCount(double HEVSpeedCount) {
+        this.HEVSpeedCount = HEVSpeedCount;
+    }
+
+    public void setICESpeedCount(double ICESpeedCount) {
+        this.ICESpeedCount = ICESpeedCount;
+    }
+
+    public void setPHEVLoadCount(double PHEVLoadCount) {
+        this.PHEVLoadCount = PHEVLoadCount;
+    }
+
+    public void setHEVLoadCount(double HEVLoadCount) {
+        this.HEVLoadCount = HEVLoadCount;
+    }
+
+    public void setICELoadCount(double ICELoadCount) {
+        this.ICELoadCount = ICELoadCount;
+    }
+
+    public void setPHEVOATCount(double PHEVOATCount) {
+        this.PHEVOATCount = PHEVOATCount;
+    }
+
+    public void setHEVOATCount(double HEVOATCount) {
+        this.HEVOATCount = HEVOATCount;
+    }
+
+    public void setICEOATCount(double ICEOATCount) {
+        this.ICEOATCount = ICEOATCount;
+    }
+
+    public void setPHEVCurrentLoad(double PHEVCurrentLoad) {
+        this.PHEVCurrentLoad = PHEVCurrentLoad;
+    }
+
+    public void setPHEVCurrentOAT(double PHEVCurrentOAT) {
+        this.PHEVCurrentOAT = PHEVCurrentOAT;
+    }
+
+    public void setHEVCurrentSpeed(double HEVCurrentSpeed) {
+        this.HEVCurrentSpeed = HEVCurrentSpeed;
+    }
+
+    public void setHEVCurrentLoad(double HEVCurrentLoad) {
+        this.HEVCurrentLoad = HEVCurrentLoad;
+    }
+
+    public void setHEVCurrentOAT(double HEVCurrentOAT) {
+        this.HEVCurrentOAT = HEVCurrentOAT;
+    }
+
+    public void setICECurrentSpeed(double ICECurrentSpeed) {
+        this.ICECurrentSpeed = ICECurrentSpeed;
+    }
+
+    public void setICECurrentLoad(double ICECurrentLoad) {
+        this.ICECurrentLoad = ICECurrentLoad;
+    }
+
+    public void setICECurrentOAT(double ICECurrentOAT) {
+        this.ICECurrentOAT = ICECurrentOAT;
     }
 }
