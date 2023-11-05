@@ -79,7 +79,6 @@ public class EX1 {
         return vehicleTripsDistanceAVL;
 
     }
-
     private AVL<VehicleTrips> getVehicleTripsAVL(List<String[]> vehiclesData, List<String[]> tripsData){
 
 
@@ -185,10 +184,10 @@ public class EX1 {
         return vehicles;
     }
 
-    public Vehicle searchByVehID(AVL<VehicleTrips> vehicleTripsAVL, int vehID){
+    public VehicleTrips searchByVehID(AVL<VehicleTrips> vehicleTripsAVL, int vehID){
         VehicleTrips temp = vehicleTripsAVL.findElement(new VehicleTrips(new Vehicle(vehID)));
         if(temp == null) return null;
-        return temp.getVehicle();
+        return temp;
     }
 
     public PairData<Trip, Vehicle> searchByTripID(AVL<VehicleTrips> vehicleTripsAVL, Trip trip){
