@@ -115,9 +115,9 @@ public class Trip implements Comparable<Trip> {
     @Override
     public String toString() {
         return "Trip{" +
-                "dayNum=" + dayNum +
-                "vehID=" + vehID +
-                ", tripID=" + tripID +
-                ", distance=" + getTripDistanceEuclidean() + "}";
+                //"dayNum=" + dayNum +
+               // "vehID=" + vehID +
+                ", tripID=" + tripID ;//+
+               // ", distance=" + getTripDistanceEuclidean() + "}";
     }
 }
